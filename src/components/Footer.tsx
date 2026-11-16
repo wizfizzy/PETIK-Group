@@ -1,23 +1,26 @@
 import React from 'react';
 import { MapPin, Mail } from 'lucide-react';
 import { FooterInfoTab } from './FooterInfoModal';
+import { ChatWidget } from './ChatWidget';
 import { INSIGHTS_DATA } from '../data/companyData';
 
 interface FooterProps {
   onNavigateHomeSection: (sectionId: string) => void;
   onOpenInfoTab: (tab: FooterInfoTab) => void;
   onOpenInsightArticle: (articleId: string) => void;
+  onOpenEnquiry: (prefilledSector?: string) => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
   onNavigateHomeSection,
   onOpenInfoTab,
   onOpenInsightArticle,
+  onOpenEnquiry,
 }) => {
   return (
     <footer className="bg-[#102B46] text-white border-t border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-6 lg:mb-4">
           {/* Brand & Purpose Column */}
           <div className="lg:col-span-4 space-y-5">
             <div className="flex items-center gap-2">
@@ -132,15 +135,14 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
         </div>
 
-        {/* Bottom Bar & Independent Redesign Disclosure */}
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-          <div>
-            © {new Date().getFullYear()} Petik Limited. All rights reserved.
-          </div>
+        {/* Chat Widget Above Divider */}
+        <div className="flex justify-end pb-6">
+          <ChatWidget onOpenEnquiry={onOpenEnquiry} />
+        </div>
 
-          <div className="text-center md:text-right text-[11px] text-slate-400 max-w-xl">
-            Independent Homepage Redesign Concept. Built for presentation to Petik Limited leadership.
-          </div>
+        {/* Bottom Bar */}
+        <div className="pt-8 border-t border-white/10 text-center md:text-left text-xs text-slate-400">
+          © {new Date().getFullYear()} Petik Limited. All rights reserved.
         </div>
       </div>
     </footer>

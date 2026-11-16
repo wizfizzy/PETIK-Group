@@ -12,7 +12,6 @@ import { Footer } from './components/Footer';
 import { FooterInfoModal, FooterInfoTab } from './components/FooterInfoModal';
 import { ServiceDetailModal } from './components/ServiceDetailModal';
 import { InsightsBlogPage } from './components/InsightsBlogPage';
-import { ChatWidget } from './components/ChatWidget';
 import { ServiceItem } from './data/companyData';
 
 export default function App() {
@@ -133,6 +132,7 @@ export default function App() {
         onNavigateHomeSection={scrollToSection}
         onOpenInfoTab={(tab) => setActiveFooterInfoTab(tab)}
         onOpenInsightArticle={(articleId) => handleOpenInsightsBlog(articleId)}
+        onOpenEnquiry={(sector) => handleOpenEnquiry(sector)}
       />
 
       {/* Shared Service Detail Modal */}
@@ -149,9 +149,6 @@ export default function App() {
         onClose={() => setActiveFooterInfoTab(null)}
         onEnquire={(subject) => handleOpenEnquiry(subject)}
       />
-
-      {/* Floating Chat With Us Widget */}
-      <ChatWidget onOpenEnquiry={(sector) => handleOpenEnquiry(sector)} />
     </div>
   );
 }

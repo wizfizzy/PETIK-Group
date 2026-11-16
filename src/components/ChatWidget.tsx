@@ -100,13 +100,13 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ onOpenEnquiry }) => {
   };
 
   return (
-    <div className="fixed bottom-3 right-3 sm:bottom-5 sm:right-6 z-40 flex flex-col items-end">
+    <div className="relative inline-flex flex-col items-end">
       {/* Expanded Chat Widget Panel */}
       {isOpen && (
         <div
           role="dialog"
           aria-label="Petik Limited Chat Widget"
-          className="sm:mb-2.5 w-[calc(100vw-1.5rem)] max-w-[340px] sm:max-w-none sm:w-[360px] h-[min(365px,calc(100dvh-5.5rem))] sm:h-[min(470px,calc(100dvh-10rem))] rounded-2xl bg-white shadow-2xl border border-[#EDEFF1] overflow-hidden flex flex-col"
+          className="absolute bottom-full right-0 mb-3 z-50 w-[calc(100vw-2rem)] max-w-[340px] sm:max-w-none sm:w-[360px] h-[min(365px,calc(100dvh-11rem))] sm:h-[min(470px,calc(100dvh-11rem))] rounded-2xl bg-white shadow-2xl border border-[#EDEFF1] overflow-hidden flex flex-col"
         >
           {activeTab === 'home' ? (
             /* HOME TAB */
@@ -353,8 +353,8 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ onOpenEnquiry }) => {
         </div>
       )}
 
-      {/* Floating "Chat with us 👋" Label + Launcher Button */}
-      <div className={isOpen ? 'hidden sm:flex items-center gap-2.5' : 'flex items-center gap-2 sm:gap-2.5'}>
+      {/* "Chat with us 👋" Label + Launcher Button */}
+      <div className="flex items-center gap-2 sm:gap-2.5">
         {!isOpen && (
           <button
             type="button"
