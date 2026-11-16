@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', sans-serif;
+  --font-display: 'Plus Jakarta Sans', sans-serif;
+  
+  --color-navy: #102B46;
+  --color-midnight: #163B59;
+  --color-warm-white: #F8F8F5;
+  --color-light-grey: #EDEFF1;
+  --color-charcoal: #252B32;
+  --color-muted-gold: #a17d2c;
+  --color-gold-hover: #8f6e24;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #F8F8F5;
+  color: #252B32;
+}
+
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: var(--font-display);
+}
+
