@@ -128,7 +128,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               P
             </div>
             <span className="font-display font-extrabold text-lg sm:text-xl text-white tracking-tight leading-none">
-              PETIK <span className="font-light text-slate-300">LIMITED</span>
+              PETIK
             </span>
           </a>
 

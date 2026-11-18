@@ -131,7 +131,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ onOpenEnquiry }) => {
                       </div>
                       <div>
                         <span className="font-display font-bold text-xs tracking-wider text-white block leading-tight">
-                          PETIK LIMITED
+                          PETIK
                         </span>
                         <span className="text-[10px] sm:text-[11px] text-slate-300 block leading-tight">
                           Client Desk

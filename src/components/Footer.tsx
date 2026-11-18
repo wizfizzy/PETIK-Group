@@ -28,7 +28,7 @@ export const Footer: React.FC<FooterProps> = ({
                 P
               </div>
               <span className="font-display font-extrabold text-xl text-white tracking-tight">
-                PETIK <span className="font-light text-slate-300">LIMITED</span>
+                PETIK
               </span>
             </div>
 
