@@ -1,3 +1,9 @@
+import heroCorporateImg from '../assets/images/hero_corporate_architecture_1794501667645.jpg';
+import introConstructionImg from '../assets/images/intro_construction_supervision_1794501668713.jpg';
+import amarisaCourtImg from '../assets/images/amarisa_court_shortlet_1794501668574.jpg';
+import renewableSolarImg from '../assets/images/renewable_energy_solar_1794501668754.jpg';
+import downstreamEnergyImg from '../assets/images/downstream_energy_logistics_1794501670084.jpg';
+
 export interface ServiceItem {
   id: string;
   number: string;
@@ -42,7 +48,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     sector: 'Real Estate',
     shortDescription: 'Strategic property opportunities, land advisory, site acquisition, and development solutions tailored to institutional and private investors.',
     fullDescription: 'Petik Limited structures, evaluates, and delivers high-value real estate assets across key economic hubs in Nigeria. From greenfield site identification to master planning and title due diligence, we provide investors and property owners with clear risk mitigation and long-term asset appreciation.',
-    image: '/src/assets/images/hero_corporate_architecture_1794501667645.jpg',
+    image: heroCorporateImg,
     keyDeliverables: [
       'Land acquisition and title verification across Lagos, Rivers, and Osun states',
       'Feasibility studies, site master planning, and highest-and-best-use analysis',
@@ -58,7 +64,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     sector: 'Civil Construction',
     shortDescription: 'End-to-end turnkey construction delivery, architectural coordination, rigorous material verification, site supervision, and milestone-governed execution.',
     fullDescription: 'Our construction management practice emphasizes verifiable site discipline. We eliminate contractor ambiguity through transparent Bill of Quantities (BOQ) adherence, certified batch testing of concrete and structural steel, and daily on-site supervision that protects projects from delays and structural flaws.',
-    image: '/src/assets/images/intro_construction_supervision_1794501668713.jpg',
+    image: introConstructionImg,
     keyDeliverables: [
       'Turnkey civil engineering and structural building construction',
       'Strict material verification: steel tensile audits, slump tests, cement grading',
@@ -74,7 +80,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     sector: 'Asset Management',
     shortDescription: 'Professional operations management, proactive maintenance protocols, 24/7 power availability systems, and asset preservation for corporate and residential facilities.',
     fullDescription: 'Long-term property value relies on flawless daily operation. Petik delivers comprehensive facility management covering continuous utility uptime (power generation, backup hybrids, water filtration), preventative HVAC maintenance, physical and digital security, and tenant relationship management.',
-    image: '/src/assets/images/amarisa_court_shortlet_1794501668574.jpg',
+    image: amarisaCourtImg,
     keyDeliverables: [
       '24/7 power management and backup generator/solar synchronization',
       'Preventive structural, electrical, and plumbing maintenance schedules',
@@ -90,7 +96,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     sector: 'Clean Energy',
     shortDescription: 'Commercial and residential solar photovoltaic engineering, hybrid energy systems, and clean power solutions engineered for Nigerian operating environments.',
     fullDescription: 'With volatile grid availability and rising diesel fuel expenditures, Petik delivers robust renewable energy systems. We design, procure, and install tier-1 solar photovoltaic arrays, lithium-iron-phosphate (LiFePO4) energy storage, and smart micro-inverters that drastically lower operating costs.',
-    image: '/src/assets/images/renewable_energy_solar_1794501668754.jpg',
+    image: renewableSolarImg,
     keyDeliverables: [
       'Commercial rooftop and ground-mounted solar PV plant engineering',
       'Hybrid diesel-solar microgrid integration with smart load shed controllers',
@@ -106,7 +112,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     sector: 'Energy Logistics',
     shortDescription: 'Specialized distribution logistics, storage solutions, and petroleum supply infrastructure services managed with strict safety and regulatory standards.',
     fullDescription: 'Operating within Nigeria’s vital energy distribution ecosystem, Petik supports downstream logistics, product sourcing, bulk haulage management, and terminal infrastructure integrity. Every operation adheres strictly to NMDPRA health, safety, security, and environment (HSSE) guidelines.',
-    image: '/src/assets/images/downstream_energy_logistics_1794501670084.jpg',
+    image: downstreamEnergyImg,
     keyDeliverables: [
       'Downstream product haulage coordination and fleet safety management',
       'Bulk terminal and depot interface management',
@@ -122,7 +128,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     sector: 'Hospitality',
     shortDescription: 'Quality shortlet accommodation, including Amarisa Court, designed to provide corporate travelers and leisure guests with premium comfort and convenience.',
     fullDescription: 'Combining residential privacy with boutique hotel hospitality, Petik develops and manages premium shortlet apartments. Our flagship property, Amarisa Court, exemplifies our standard: curated designer interiors, continuous power, high-speed connectivity, and attentive guest concierge.',
-    image: '/src/assets/images/amarisa_court_shortlet_1794501668574.jpg',
+    image: amarisaCourtImg,
     keyDeliverables: [
       'Boutique fully serviced apartments with contemporary interior finishes',
       'Guaranteed 24/7 electricity, high-speed fibre internet, and smart security',
@@ -141,7 +147,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
     category: 'Shortlet',
     shortDescription: 'Modern serviced living accommodation blending residential comfort with contemporary executive shortlet amenities.',
     fullDescription: 'Amarisa Court represents Petik’s vision for premium residential living in emerging Nigerian metropolitan hubs. Designed with modern architectural lines, the development provides self-contained executive apartments equipped with high-grade fixtures, dedicated solar backup power, and tailored concierge services for business travelers and short-stay guests.',
-    image: '/src/assets/images/amarisa_court_shortlet_1794501668574.jpg',
+    image: amarisaCourtImg,
     highlights: ['Boutique Serviced Suites', 'Independent Hybrid Power', 'Fitted Kitchenettes & Marble Finishes'],
     status: 'Operational & Guest Ready'
   },
@@ -152,7 +158,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
     category: 'Real Estate',
     shortDescription: 'Commercial property advisory, site planning, and strategic asset development along the prime Lekki corridor.',
     fullDescription: 'Positioned in Lagos’ premier commercial district, Petik Limited coordinates comprehensive property assessments, title verification, and mixed-use development advisory. Our Lekki presence enables direct oversight of high-density urban residential and commercial developments.',
-    image: '/src/assets/images/hero_corporate_architecture_1794501667645.jpg',
+    image: heroCorporateImg,
     highlights: ['Prime Corridor Location', 'Institutional Title Due Diligence', 'High-Density Structural Advisory'],
     status: 'Active Advisory Portfolio'
   },
@@ -163,7 +169,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
     category: 'Construction',
     shortDescription: 'Multi-stage civil engineering supervision, site mobilization, and quality-controlled development delivery.',
     fullDescription: 'Petik’s civil engineering team provides hands-on project management across southern Nigeria. Focusing on durable foundation engineering, soil stabilization, and reinforced concrete compliance, our engineering teams ensure structures withstand heavy rainfall and challenging terrain.',
-    image: '/src/assets/images/intro_construction_supervision_1794501668713.jpg',
+    image: introConstructionImg,
     highlights: ['Soil Stabilization Engineering', 'Certified Structural Audits', 'Milestone-Based Client Reporting'],
     status: 'Ongoing Execution'
   },
@@ -174,7 +180,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
     category: 'Energy',
     shortDescription: 'Turnkey commercial rooftop solar photovoltaic array engineered to reduce reliance on grid diesel generators.',
     fullDescription: 'A high-capacity clean energy initiative engineered by Petik’s renewable energy division. Featuring commercial mono-crystalline PV modules coupled with high-efficiency inverters, this installation reduces facility energy expenditure by over 45% while guaranteeing silent daytime operations.',
-    image: '/src/assets/images/renewable_energy_solar_1794501668754.jpg',
+    image: renewableSolarImg,
     highlights: ['300kWp Solar Generation Capacity', 'Smart Inverter Synchronization', '45% Energy Cost Reduction'],
     status: 'Commissioned'
   }
@@ -198,7 +204,7 @@ export const INSIGHTS_DATA: InsightArticle[] = [
       'Diaspora building projects require verifiable third-party material batch testing.',
       'Transparency in BOQ formulation is the strongest predictor of on-time delivery.'
     ],
-    image: '/src/assets/images/intro_construction_supervision_1794501668713.jpg'
+    image: introConstructionImg
   },
   {
     id: 'quality-control-standards',
@@ -217,7 +223,7 @@ export const INSIGHTS_DATA: InsightArticle[] = [
       '28-day concrete cube crush tests provide permanent legal proof of structural integrity.',
       'Continuous on-site supervision during casting prevents honeycombing and void defects.'
     ],
-    image: '/src/assets/images/hero_corporate_architecture_1794501667645.jpg'
+    image: heroCorporateImg
   },
   {
     id: 'building-for-families',
@@ -236,7 +242,7 @@ export const INSIGHTS_DATA: InsightArticle[] = [
       'Acoustic insulation and natural cross-ventilation reduce active cooling energy demands.',
       'Pedestrian-safe circulation paths improve quality of life for family residents.'
     ],
-    image: '/src/assets/images/amarisa_court_shortlet_1794501668574.jpg'
+    image: amarisaCourtImg
   },
   {
     id: 'building-without-stress',
@@ -255,7 +261,7 @@ export const INSIGHTS_DATA: InsightArticle[] = [
       'Stage-by-stage financial disbursements protect client capital.',
       'Verified procurement channels safeguard against substandard building materials.'
     ],
-    image: '/src/assets/images/renewable_energy_solar_1794501668754.jpg'
+    image: renewableSolarImg
   }
 ];
 
@@ -274,7 +280,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'Modern Commercial Architecture & Real Estate',
     category: 'Real Estate & Shortlet',
     location: 'Lagos Corridor, Nigeria',
-    image: '/src/assets/images/hero_corporate_architecture_1794501667645.jpg',
+    image: heroCorporateImg,
     caption: 'Contemporary commercial development showcasing glass facade engineering and waterfront planning.'
   },
   {
@@ -282,7 +288,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'On-Site Structural & Blueprint Supervision',
     category: 'Construction',
     location: 'Active Project Site',
-    image: '/src/assets/images/intro_construction_supervision_1794501668713.jpg',
+    image: introConstructionImg,
     caption: 'Project directors and civil engineers conducting stage-by-stage structural blueprint verification.'
   },
   {
@@ -290,7 +296,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'Amarisa Court Executive Suite Interior',
     category: 'Real Estate & Shortlet',
     location: 'Osogbo, Osun State',
-    image: '/src/assets/images/amarisa_court_shortlet_1794501668574.jpg',
+    image: amarisaCourtImg,
     caption: 'Serviced shortlet living suite at Amarisa Court featuring contemporary finishes and ambient lighting.'
   },
   {
@@ -298,7 +304,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'Commercial Photovoltaic Array Installation',
     category: 'Energy',
     location: 'Nigeria Industrial Hub',
-    image: '/src/assets/images/renewable_energy_solar_1794501668754.jpg',
+    image: renewableSolarImg,
     caption: 'High-efficiency rooftop solar installation engineered for continuous commercial power availability.'
   },
   {
@@ -306,7 +312,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'Downstream Energy Storage & Manifold Infrastructure',
     category: 'Energy',
     location: 'Energy Logistics Terminal',
-    image: '/src/assets/images/downstream_energy_logistics_1794501670084.jpg',
+    image: downstreamEnergyImg,
     caption: 'Downstream petroleum supply logistics and storage operations managed under strict safety standards.'
   }
 ];

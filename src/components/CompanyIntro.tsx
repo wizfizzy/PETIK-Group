@@ -1,5 +1,6 @@
 import React from 'react';
 import { CheckCircle2 } from 'lucide-react';
+import introConstructionImg from '../assets/images/intro_construction_supervision_1794501668713.jpg';
 
 export const CompanyIntro: React.FC = () => {
   return (
@@ -11,7 +12,7 @@ export const CompanyIntro: React.FC = () => {
             <div className="relative">
               <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-xl bg-slate-200">
                 <img
-                  src="/src/assets/images/intro_construction_supervision_1794501668713.jpg"
+                  src={introConstructionImg}
                   alt="Petik engineering and project management team conducting on-site structural inspection"
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"

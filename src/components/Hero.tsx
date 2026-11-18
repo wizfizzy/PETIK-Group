@@ -1,5 +1,6 @@
 import React from 'react';
 import { ChevronDown, ArrowRight } from 'lucide-react';
+import heroCorporateImg from '../assets/images/hero_corporate_architecture_1794501667645.jpg';
 
 interface HeroProps {
   onExploreCapabilities: () => void;
@@ -12,7 +13,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreCapabilities, onStartConver
       {/* Background Cinematic Visual */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/src/assets/images/hero_corporate_architecture_1794501667645.jpg"
+          src={heroCorporateImg}
           alt="Modern corporate real estate development and architectural landscape in Nigeria"
           className="w-full h-full object-cover object-center"
           referrerPolicy="no-referrer"

@@ -11,6 +11,7 @@ import {
   CHAT_QUICK_TOPICS,
   generatePetikChatReply,
 } from '../utils/chatAssistant';
+import heroCorporateImg from '../assets/images/hero_corporate_architecture_1794501667645.jpg';
 
 interface ChatMessage {
   id: string;
@@ -114,7 +115,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ onOpenEnquiry }) => {
               {/* Dark Branded Header Banner */}
               <div className="relative bg-[#102B46] text-white px-4 py-2.5 pb-6 sm:px-5 sm:pt-3.5 sm:pb-8 overflow-hidden">
                 <img
-                  src="/src/assets/images/hero_corporate_architecture_1794501667645.jpg"
+                  src={heroCorporateImg}
                   alt=""
                   aria-hidden="true"
                   className="absolute inset-0 w-full h-full object-cover opacity-25"

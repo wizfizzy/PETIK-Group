@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowRight, Wifi, Zap, Shield, Sparkles, Coffee, Tv } from 'lucide-react';
+import amarisaCourtImg from '../assets/images/amarisa_court_shortlet_1794501668574.jpg';
 
 interface FeaturedPropertyProps {
   onBookShortlet: () => void;
@@ -25,7 +26,7 @@ export const FeaturedProperty: React.FC<FeaturedPropertyProps> = ({ onBookShortl
             {/* Visual Column */}
             <div className="lg:col-span-7 relative min-h-[360px] lg:min-h-[500px]">
               <img
-                src="/src/assets/images/amarisa_court_shortlet_1794501668574.jpg"
+                src={amarisaCourtImg}
                 alt="Amarisa Court luxury shortlet apartment interior living room suite"
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
