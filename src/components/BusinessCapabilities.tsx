@@ -22,7 +22,7 @@ export const BusinessCapabilities: React.FC<BusinessCapabilitiesProps> = ({
             Expertise That Moves Projects Forward.
           </h2>
           <p className="text-base text-slate-600 leading-relaxed">
-            Delivering disciplined, value-focused solutions across real estate, infrastructure engineering, clean energy, and corporate services in Nigeria.
+            Real estate development and advisory, civil construction and project management, facility operations, solar PV installations, downstream petroleum logistics, and Amarisa Court shortlets across Nigeria.
           </p>
         </div>
 
@@ -65,19 +65,18 @@ export const BusinessCapabilities: React.FC<BusinessCapabilitiesProps> = ({
               </div>
 
               {/* Action Trigger */}
-              <div className="px-6 pb-6 pt-2 border-t border-slate-100 flex items-center justify-between">
+              <div className="px-6 pb-6 pt-3 border-t border-slate-100 flex items-center">
                 <button
                   type="button"
                   onClick={() => onOpenService(service)}
                   className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#102B46] group-hover:text-[#a17d2c] transition-colors"
                 >
-                  <span>Learn More</span>
+                  <span>
+                    Explore {service.sector}
+                    <span className="sr-only"> — {service.title}</span>
+                  </span>
                   <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </button>
-
-                <span className="text-[11px] text-slate-400 font-medium">
-                  Verified Division
-                </span>
               </div>
             </div>
           ))}

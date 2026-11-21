@@ -56,7 +56,7 @@ export function generatePetikChatReply(rawMessage: string): ChatReply {
     msg.includes('booking')
   ) {
     return {
-      text: 'Amarisa Court offers serviced executive shortlet living in Osogbo with 24/7 hybrid power backup, dedicated fibre internet, modern fitted kitchens, and round-the-clock security. You can submit dates directly via our consultation form.',
+      text: 'Amarisa Court offers serviced shortlet apartments in Osogbo with hybrid solar and generator backup power, dedicated fibre internet, modern fitted kitchens, and on-site security. You can submit preferred dates directly via our contact form.',
       suggestedSector: 'Amarisa Court Shortlet Living',
       actionLabel: 'Enquire Amarisa Court Availability',
     };
@@ -71,7 +71,7 @@ export function generatePetikChatReply(rawMessage: string): ChatReply {
     msg.includes('civil')
   ) {
     return {
-      text: 'Petik Construction & Project Management delivers turnkey civil and structural builds with transparent BOQ controls, certified steel/concrete material verification, and milestone photo/video reporting across Lagos, Port Harcourt, and Osogbo.',
+      text: 'Petik Construction & Project Management handles civil and structural builds with line-item BOQ controls, third-party steel and concrete testing, and milestone photo/video reporting across Lagos, Port Harcourt, and Osogbo.',
       suggestedSector: 'Construction & Project Management',
       actionLabel: 'Start a Construction Enquiry',
     };
@@ -100,7 +100,7 @@ export function generatePetikChatReply(rawMessage: string): ChatReply {
     msg.includes('clean energy')
   ) {
     return {
-      text: 'Petik Renewable Energy designs and commissions commercial rooftop solar PV arrays, lithium-ion storage, and hybrid diesel-solar microgrids engineered to lower operating energy costs across Nigerian sites.',
+      text: 'Petik Renewable Energy designs and installs commercial rooftop solar PV arrays, lithium-ion battery storage, and hybrid diesel-solar microgrids sized to site power loads across Nigeria.',
       suggestedSector: 'Renewable Energy Solutions',
       actionLabel: 'Request Energy Audit',
     };
@@ -115,7 +115,7 @@ export function generatePetikChatReply(rawMessage: string): ChatReply {
     msg.includes('petroleum')
   ) {
     return {
-      text: 'Our Oil & Gas Downstream division coordinates bulk petroleum haulage, storage interface management, and industrial fuel supply agreements under strict NMDPRA HSSE compliance.',
+      text: 'Our Oil & Gas Downstream division coordinates bulk petroleum haulage, storage depot scheduling, and commercial fuel supply contracts under documented safety procedures.',
       suggestedSector: 'Oil & Gas Downstream Services',
       actionLabel: 'Discuss Downstream Supply',
     };
@@ -127,7 +127,7 @@ export function generatePetikChatReply(rawMessage: string): ChatReply {
     msg.includes('asset management')
   ) {
     return {
-      text: 'Petik Facility & Property Management oversees 24/7 power uptime, preventive MEP maintenance, perimeter security, and tenant administration for corporate offices and residential estates.',
+      text: 'Petik Facility & Property Management oversees generator and solar backup power scheduling, preventive MEP maintenance, perimeter security, and tenant administration for corporate offices and residential estates.',
       suggestedSector: 'Facility & Property Management',
       actionLabel: 'Enquire Facility Management',
     };
@@ -162,7 +162,7 @@ export function generatePetikChatReply(rawMessage: string): ChatReply {
   }
 
   return {
-    text: 'Thank you for reaching out to Petik Limited. Our multidisciplinary team covers Real Estate, Construction & Project Management, Renewable Energy, Downstream Logistics, and Amarisa Court Shortlets. Share your project details or use our consultation form so a specialist can follow up.',
+    text: 'Thank you for reaching out to Petik Limited. We operate across Real Estate, Construction & Project Management, Facility Management, Renewable Energy, Downstream Logistics, and Amarisa Court Shortlets. Share your enquiry or use our contact form so a team member can follow up.',
     actionLabel: 'Submit Project Enquiry',
   };
 }

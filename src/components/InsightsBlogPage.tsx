@@ -326,7 +326,7 @@ export const InsightsBlogPage: React.FC<InsightsBlogPageProps> = ({
                         <ArrowRight className="w-3.5 h-3.5 text-[#a17d2c] transition-transform group-hover:translate-x-1" />
                       </button>
 
-                      <span className="text-[11px] text-slate-400">Petik Research</span>
+                      <span className="text-[11px] text-slate-400">Petik Insights</span>
                     </div>
                   </article>
                 ))}

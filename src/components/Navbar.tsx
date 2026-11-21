@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, ArrowUpRight, ChevronDown } from 'lucide-react';
 
-export type ActivePageView = 'home' | 'insights';
+export type ActivePageView = 'home' | 'projects' | 'insights';
 
 interface NavbarProps {
   activeView: ActivePageView;
   onNavigateHomeSection: (sectionId: string) => void;
+  onOpenProjectsPage: () => void;
   onOpenInsightsBlog: () => void;
   onOpenEnquiry: () => void;
 }
@@ -15,6 +16,7 @@ type DropdownKey = 'services' | 'shortlets' | 'about';
 export const Navbar: React.FC<NavbarProps> = ({
   activeView,
   onNavigateHomeSection,
+  onOpenProjectsPage,
   onOpenInsightsBlog,
   onOpenEnquiry,
 }) => {
@@ -66,7 +68,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   ];
 
   const aboutItems = [
-    { id: 'leadership', sectionId: 'about', label: 'Executive Leadership' },
+    { id: 'leadership', sectionId: 'team', label: 'Our Team' },
     { id: 'gallery', sectionId: 'projects', label: 'Gallery' },
     { id: 'foundation', sectionId: 'about', label: 'Petik Development Foundation' },
   ];
@@ -100,7 +102,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     setMobileExpanded((prev) => (prev === key ? null : key));
   };
 
-  const solidHeader = isScrolled || activeView === 'insights';
+  const solidHeader = isScrolled || activeView !== 'home';
 
   return (
     <header
@@ -115,7 +117,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="flex items-center justify-between gap-8">
           {/* Zone 1: Brand Wordmark */}
           <a
-            href="#hero"
+            href="/"
             onClick={(e) => {
               e.preventDefault();
               closeAllMenus();
@@ -139,7 +141,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           >
             {/* 1. Home */}
             <a
-              href="#hero"
+              href="/"
               onClick={(e) => {
                 e.preventDefault();
                 closeAllMenus();
@@ -293,9 +295,26 @@ export const Navbar: React.FC<NavbarProps> = ({
               )}
             </div>
 
-            {/* 5. Contact Us */}
+            {/* 5. Projects Page */}
             <a
-              href="#contact"
+              href="/projects"
+              onClick={(e) => {
+                e.preventDefault();
+                closeAllMenus();
+                onOpenProjectsPage();
+              }}
+              className={`py-1.5 transition-colors whitespace-nowrap shrink-0 border-b-2 ${
+                activeView === 'projects'
+                  ? 'text-white border-[#a17d2c]'
+                  : 'text-slate-200 border-transparent hover:text-white'
+              }`}
+            >
+              Projects
+            </a>
+
+            {/* 6. Contact Us */}
+            <a
+              href="/#contact"
               onClick={(e) => {
                 e.preventDefault();
                 closeAllMenus();
@@ -306,10 +325,11 @@ export const Navbar: React.FC<NavbarProps> = ({
               Contact Us
             </a>
 
-            {/* 6. Insights (Blog Page) */}
-            <button
-              type="button"
-              onClick={() => {
+            {/* 7. Insights (Blog Page) */}
+            <a
+              href="/insights"
+              onClick={(e) => {
+                e.preventDefault();
                 closeAllMenus();
                 onOpenInsightsBlog();
               }}
@@ -320,7 +340,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               }`}
             >
               Insights
-            </button>
+            </a>
           </nav>
 
           {/* Zone 3: Primary Action */}
@@ -370,7 +390,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="lg:hidden bg-[#102B46] border-b border-white/10 px-4 pt-4 pb-6 space-y-2 shadow-2xl max-h-[82vh] overflow-y-auto">
           {/* 1. Home */}
           <a
-            href="#hero"
+            href="/"
             onClick={(e) => {
               e.preventDefault();
               closeAllMenus();
@@ -483,9 +503,22 @@ export const Navbar: React.FC<NavbarProps> = ({
             )}
           </div>
 
-          {/* 5. Contact Us */}
+          {/* 5. Projects Page */}
           <a
-            href="#contact"
+            href="/projects"
+            onClick={(e) => {
+              e.preventDefault();
+              closeAllMenus();
+              onOpenProjectsPage();
+            }}
+            className="block w-full text-left px-3 py-3 rounded-md text-base font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-colors"
+          >
+            Projects
+          </a>
+
+          {/* 6. Contact Us */}
+          <a
+            href="/#contact"
             onClick={(e) => {
               e.preventDefault();
               closeAllMenus();
@@ -496,17 +529,18 @@ export const Navbar: React.FC<NavbarProps> = ({
             Contact Us
           </a>
 
-          {/* 6. Insights (Blog Page) */}
-          <button
-            type="button"
-            onClick={() => {
+          {/* 7. Insights (Blog Page) */}
+          <a
+            href="/insights"
+            onClick={(e) => {
+              e.preventDefault();
               closeAllMenus();
               onOpenInsightsBlog();
             }}
-            className="w-full text-left px-3 py-3 rounded-md text-base font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-colors"
+            className="block w-full text-left px-3 py-3 rounded-md text-base font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-colors"
           >
             Insights
-          </button>
+          </a>
 
           <div className="pt-4 border-t border-white/10">
             <a

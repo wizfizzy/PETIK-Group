@@ -40,7 +40,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreCapabilities, onStartConver
 
           {/* Supporting Copy */}
           <p className="text-base sm:text-lg lg:text-xl text-slate-200 leading-relaxed font-normal mb-10 max-w-2xl">
-            From real estate and construction to infrastructure and energy solutions, Petik Limited delivers expertise that helps businesses, communities, and investments move forward.
+            Petik Limited handles land and property development, civil construction and project supervision, building facility management, commercial solar installations, downstream petroleum logistics, and Amarisa Court shortlet apartments in Nigeria.
           </p>
 
           {/* CTA Group */}

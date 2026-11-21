@@ -16,16 +16,38 @@ export interface ServiceItem {
   audience: string;
 }
 
+export type ProjectSector = 'Real Estate' | 'Construction' | 'Energy' | 'Shortlet';
+
+export interface ProjectGalleryPhoto {
+  image: string;
+  alt: string;
+  caption: string;
+  isIllustrative: boolean;
+}
+
+export interface ProjectCaseStudy {
+  brief: string;
+  challenge: string;
+  approach: string;
+  outcome: string;
+  gallery: ProjectGalleryPhoto[];
+}
+
 export interface ProjectItem {
   id: string;
   name: string;
   location: string;
-  category: 'Real Estate' | 'Construction' | 'Energy' | 'Shortlet';
-  shortDescription: string;
-  fullDescription: string;
+  sector: ProjectSector;
+  enquiryService: string;
+  role: string;
+  scope: string;
+  yearAndStatus: string;
+  verifiedOutcome: string;
+  clientName: string;
   image: string;
-  highlights: string[];
-  status: string;
+  imageAlt: string;
+  isIllustrative: boolean;
+  caseStudy: ProjectCaseStudy;
 }
 
 export interface InsightArticle {
@@ -46,29 +68,29 @@ export const SERVICES_DATA: ServiceItem[] = [
     number: '01',
     title: 'Real Estate Development & Advisory',
     sector: 'Real Estate',
-    shortDescription: 'Strategic property opportunities, land advisory, site acquisition, and development solutions tailored to institutional and private investors.',
-    fullDescription: 'Petik Limited structures, evaluates, and delivers high-value real estate assets across key economic hubs in Nigeria. From greenfield site identification to master planning and title due diligence, we provide investors and property owners with clear risk mitigation and long-term asset appreciation.',
+    shortDescription: 'Land acquisition support, title verification, site feasibility reviews, and residential or commercial property development in Nigeria.',
+    fullDescription: 'Petik Limited assists property buyers and developers with site identification, title due diligence, feasibility planning, and residential or commercial development coordination in Nigeria.',
     image: heroCorporateImg,
     keyDeliverables: [
       'Land acquisition and title verification across Lagos, Rivers, and Osun states',
-      'Feasibility studies, site master planning, and highest-and-best-use analysis',
+      'Feasibility studies, site master planning, and development budgeting',
       'Residential and commercial development structuring',
-      'Joint venture structuring and property portfolio consulting'
+      'Joint venture structuring and property advisory consulting'
     ],
-    audience: 'Institutional investors, private high-net-worth individuals, diaspora property buyers'
+    audience: 'Private and corporate property buyers, diaspora clients, and developers'
   },
   {
     id: 'construction-pm',
     number: '02',
     title: 'Construction & Project Management',
     sector: 'Civil Construction',
-    shortDescription: 'End-to-end turnkey construction delivery, architectural coordination, rigorous material verification, site supervision, and milestone-governed execution.',
-    fullDescription: 'Our construction management practice emphasizes verifiable site discipline. We eliminate contractor ambiguity through transparent Bill of Quantities (BOQ) adherence, certified batch testing of concrete and structural steel, and daily on-site supervision that protects projects from delays and structural flaws.',
+    shortDescription: 'Civil engineering and building construction, architectural coordination, third-party material testing, site supervision, and milestone reporting.',
+    fullDescription: 'Our construction team manages civil and building works through line-item Bill of Quantities (BOQ) tracking, third-party testing of concrete and structural steel, and daily on-site engineering supervision.',
     image: introConstructionImg,
     keyDeliverables: [
-      'Turnkey civil engineering and structural building construction',
-      'Strict material verification: steel tensile audits, slump tests, cement grading',
-      'Milestone-driven project scheduling with photo/video progress reporting',
+      'Civil engineering and structural building construction',
+      'Material quality checks: steel tensile audits, slump tests, cement grading',
+      'Milestone project scheduling with photo and video progress reporting',
       'Site safety compliance, contractor coordination, and handover commissioning'
     ],
     audience: 'Commercial developers, corporate organizations, private property owners'
@@ -78,112 +100,208 @@ export const SERVICES_DATA: ServiceItem[] = [
     number: '03',
     title: 'Facility & Property Management',
     sector: 'Asset Management',
-    shortDescription: 'Professional operations management, proactive maintenance protocols, 24/7 power availability systems, and asset preservation for corporate and residential facilities.',
-    fullDescription: 'Long-term property value relies on flawless daily operation. Petik delivers comprehensive facility management covering continuous utility uptime (power generation, backup hybrids, water filtration), preventative HVAC maintenance, physical and digital security, and tenant relationship management.',
+    shortDescription: 'Day-to-day building operations, preventive maintenance schedules, hybrid backup power management, and tenancy administration.',
+    fullDescription: 'Petik manages daily building operations covering backup generator and solar power scheduling, water treatment, preventive HVAC and electrical maintenance, site security, and tenant administration.',
     image: amarisaCourtImg,
     keyDeliverables: [
-      '24/7 power management and backup generator/solar synchronization',
+      'Backup generator and solar power scheduling and maintenance',
       'Preventive structural, electrical, and plumbing maintenance schedules',
-      'Perimeter security, access control, and CCTV management',
-      'Tenant rent administration, lease compliance, and operational cost auditing'
+      'Perimeter security, access control, and CCTV operations',
+      'Tenant rent administration, lease compliance, and operating expense tracking'
     ],
-    audience: 'Commercial office complexes, residential estates, multi-tenant developments'
+    audience: 'Commercial office buildings, residential estates, multi-tenant properties'
   },
   {
     id: 'renewable-energy',
     number: '04',
     title: 'Renewable Energy Solutions',
     sector: 'Clean Energy',
-    shortDescription: 'Commercial and residential solar photovoltaic engineering, hybrid energy systems, and clean power solutions engineered for Nigerian operating environments.',
-    fullDescription: 'With volatile grid availability and rising diesel fuel expenditures, Petik delivers robust renewable energy systems. We design, procure, and install tier-1 solar photovoltaic arrays, lithium-iron-phosphate (LiFePO4) energy storage, and smart micro-inverters that drastically lower operating costs.',
+    shortDescription: 'Commercial and residential solar photovoltaic engineering, hybrid inverter-battery systems, and clean power installation.',
+    fullDescription: 'Petik designs, procures, and installs solar photovoltaic arrays, lithium-iron-phosphate (LiFePO4) battery storage, and hybrid inverters sized to site load profiles across Nigeria.',
     image: renewableSolarImg,
     keyDeliverables: [
       'Commercial rooftop and ground-mounted solar PV plant engineering',
-      'Hybrid diesel-solar microgrid integration with smart load shed controllers',
-      'Energy consumption audits and power factor correction',
-      'Ongoing remote telemetry, panel maintenance, and battery health monitoring'
+      'Hybrid diesel-solar microgrid integration with load management',
+      'Site load assessments and electrical distribution upgrades',
+      'Remote system monitoring, panel cleaning, and battery maintenance'
     ],
-    audience: 'Commercial facilities, corporate headquarters, industrial sites, estates'
+    audience: 'Commercial facilities, offices, industrial sites, residential estates'
   },
   {
     id: 'downstream-energy',
     number: '05',
     title: 'Oil & Gas Downstream Services',
     sector: 'Energy Logistics',
-    shortDescription: 'Specialized distribution logistics, storage solutions, and petroleum supply infrastructure services managed with strict safety and regulatory standards.',
-    fullDescription: 'Operating within Nigeria’s vital energy distribution ecosystem, Petik supports downstream logistics, product sourcing, bulk haulage management, and terminal infrastructure integrity. Every operation adheres strictly to NMDPRA health, safety, security, and environment (HSSE) guidelines.',
+    shortDescription: 'Petroleum product haulage coordination, depot interface support, and commercial fuel supply under documented safety procedures.',
+    fullDescription: 'Petik coordinates downstream petroleum logistics, product sourcing, bulk haulage scheduling, and commercial fuel supply agreements. [PLACEHOLDER: Insert regulatory licence / permit details if applicable].',
     image: downstreamEnergyImg,
     keyDeliverables: [
-      'Downstream product haulage coordination and fleet safety management',
-      'Bulk terminal and depot interface management',
-      'Industrial fuel supply agreements for major construction and manufacturing clients',
-      'HSSE auditing and regulatory compliance support'
+      'Downstream product haulage coordination and fleet safety oversight',
+      'Bulk terminal and depot interface coordination',
+      'Commercial fuel supply agreements for construction and industrial sites',
+      'Health, safety, security, and environment (HSSE) procedural checks'
     ],
-    audience: 'Industrial enterprises, fleet operators, downstream distribution networks'
+    audience: 'Commercial operators, fleet operators, downstream distribution networks'
   },
   {
     id: 'shortlet-living',
     number: '06',
     title: 'Shortlet Accommodation & Hospitality',
     sector: 'Hospitality',
-    shortDescription: 'Quality shortlet accommodation, including Amarisa Court, designed to provide corporate travelers and leisure guests with premium comfort and convenience.',
-    fullDescription: 'Combining residential privacy with boutique hotel hospitality, Petik develops and manages premium shortlet apartments. Our flagship property, Amarisa Court, exemplifies our standard: curated designer interiors, continuous power, high-speed connectivity, and attentive guest concierge.',
+    shortDescription: 'Furnished shortlet apartments at Amarisa Court in Osogbo for business travellers, visiting teams, and short-stay guests.',
+    fullDescription: 'Petik operates serviced shortlet accommodation at Amarisa Court, offering furnished apartments with hybrid solar and generator backup power, fibre internet, fitted kitchens, and on-site security.',
     image: amarisaCourtImg,
     keyDeliverables: [
-      'Boutique fully serviced apartments with contemporary interior finishes',
-      'Guaranteed 24/7 electricity, high-speed fibre internet, and smart security',
-      'Executive work amenities for diaspora professionals and corporate guests',
-      'Turnkey property onboarding and yield management for property owners'
+      'Furnished serviced apartments with fitted kitchens',
+      'Hybrid solar and generator backup power, fibre internet, and access-controlled security',
+      'Workspace setups for business travellers and diaspora visitors',
+      'Guest onboarding and property upkeep services'
     ],
-    audience: 'Corporate executives, diaspora visitors, short-stay families, business travelers'
+    audience: 'Corporate travellers, diaspora visitors, families, short-stay guests'
   }
 ];
 
 export const PROJECTS_DATA: ProjectItem[] = [
   {
     id: 'amarisa-court',
-    name: 'Amarisa Court Residences',
+    name: 'Amarisa Court',
     location: 'Osogbo, Osun State',
-    category: 'Shortlet',
-    shortDescription: 'Modern serviced living accommodation blending residential comfort with contemporary executive shortlet amenities.',
-    fullDescription: 'Amarisa Court represents Petik’s vision for premium residential living in emerging Nigerian metropolitan hubs. Designed with modern architectural lines, the development provides self-contained executive apartments equipped with high-grade fixtures, dedicated solar backup power, and tailored concierge services for business travelers and short-stay guests.',
+    sector: 'Shortlet',
+    enquiryService: 'Amarisa Court Shortlet Living',
+    role: 'Developer & Facility Operator',
+    scope: 'Serviced shortlet apartments with hybrid solar and generator backup power, fibre internet, and on-site facility upkeep. [PLACEHOLDER: Insert unit count and floor area].',
+    yearAndStatus: '[PLACEHOLDER: Year] · Operational Shortlet',
+    verifiedOutcome: '[PLACEHOLDER: Insert verified occupancy or handover record with source]',
+    clientName: 'Petik Limited (Own Portfolio)',
     image: amarisaCourtImg,
-    highlights: ['Boutique Serviced Suites', 'Independent Hybrid Power', 'Fitted Kitchenettes & Marble Finishes'],
-    status: 'Operational & Guest Ready'
+    imageAlt: 'Interior living room and kitchen suite representative of Amarisa Court serviced shortlet apartments in Osogbo',
+    isIllustrative: true,
+    caseStudy: {
+      brief: 'Provide furnished shortlet accommodation in Osogbo for visiting executives, project teams, and families requiring reliable utilities and controlled site access. [PLACEHOLDER: Add verified project brief details].',
+      challenge: 'Consistent electricity, water treatment, and preventive maintenance are difficult to sustain in standalone residential rentals without dedicated facility management. [PLACEHOLDER: Add specific site constraints encountered].',
+      approach: 'Petik coordinated apartment fit-out, hybrid solar and generator power setup, fitted kitchens, and ongoing housekeeping and security under direct facility management. [PLACEHOLDER: Add specific engineering/fit-out steps].',
+      outcome: '[PLACEHOLDER: Insert verified completion date, unit count, and documented operating outcome].',
+      gallery: [
+        {
+          image: amarisaCourtImg,
+          alt: 'Furnished shortlet living room interior representing Amarisa Court apartment finishes',
+          caption: 'Serviced apartment living area layout and interior lighting.',
+          isIllustrative: true,
+        },
+        {
+          image: renewableSolarImg,
+          alt: 'Rooftop solar photovoltaic array representing hybrid backup power integration for residential properties',
+          caption: 'Hybrid solar PV integration supporting daytime residential loads.',
+          isIllustrative: true,
+        },
+      ],
+    },
   },
   {
     id: 'lekki-commercial',
-    name: 'Lekki Peninsula Real Estate Engagements',
-    location: 'Lekki Phase 1, Lagos',
-    category: 'Real Estate',
-    shortDescription: 'Commercial property advisory, site planning, and strategic asset development along the prime Lekki corridor.',
-    fullDescription: 'Positioned in Lagos’ premier commercial district, Petik Limited coordinates comprehensive property assessments, title verification, and mixed-use development advisory. Our Lekki presence enables direct oversight of high-density urban residential and commercial developments.',
+    name: '[PLACEHOLDER: Lekki Real Estate Project Name]',
+    location: 'Lekki Phase 1, Lagos State',
+    sector: 'Real Estate',
+    enquiryService: 'Real Estate Development & Advisory',
+    role: 'Development Advisor & Transaction Lead',
+    scope: 'Land title due diligence, site feasibility review, and development structuring in Lekki Phase 1. [PLACEHOLDER: Insert land size and exact deliverable scope].',
+    yearAndStatus: '[PLACEHOLDER: Year & Status]',
+    verifiedOutcome: '[PLACEHOLDER: Insert verified project outcome with source]',
+    clientName: '[PLACEHOLDER: Client Name — include only if permitted]',
     image: heroCorporateImg,
-    highlights: ['Prime Corridor Location', 'Institutional Title Due Diligence', 'High-Density Structural Advisory'],
-    status: 'Active Advisory Portfolio'
+    imageAlt: 'Contemporary glass corporate building facade representing commercial real estate development advisory in Lagos',
+    isIllustrative: true,
+    caseStudy: {
+      brief: 'Evaluate site viability, verify land title records, and structure development budgets along the Lekki corridor. [PLACEHOLDER: Insert verified brief and client objectives].',
+      challenge: 'Property acquisitions in high-demand Lagos corridors require thorough title searches, drainage elevation checks, and realistic cost planning before capital commitment. [PLACEHOLDER: Add actual site challenges].',
+      approach: 'Petik conducted registry title verification, site boundary checks, and feasibility budgeting aligned with local building approvals. [PLACEHOLDER: Add actual advisory steps completed].',
+      outcome: '[PLACEHOLDER: Insert verified transaction or development milestone outcome].',
+      gallery: [
+        {
+          image: heroCorporateImg,
+          alt: 'Multi-storey commercial building exterior representing urban real estate development in Lagos',
+          caption: 'Commercial development feasibility and site planning scope.',
+          isIllustrative: true,
+        },
+        {
+          image: introConstructionImg,
+          alt: 'Engineers reviewing site drawings with blueprints on a construction site',
+          caption: 'Technical site review and development coordination.',
+          isIllustrative: true,
+        },
+      ],
+    },
   },
   {
     id: 'niger-delta-civil',
-    name: 'Regional Infrastructure & Civil Coordination',
+    name: '[PLACEHOLDER: Port Harcourt Civil Construction Project Name]',
     location: 'Port Harcourt, Rivers State',
-    category: 'Construction',
-    shortDescription: 'Multi-stage civil engineering supervision, site mobilization, and quality-controlled development delivery.',
-    fullDescription: 'Petik’s civil engineering team provides hands-on project management across southern Nigeria. Focusing on durable foundation engineering, soil stabilization, and reinforced concrete compliance, our engineering teams ensure structures withstand heavy rainfall and challenging terrain.',
+    sector: 'Construction',
+    enquiryService: 'Construction & Project Management',
+    role: 'Civil Contractor & Project Manager',
+    scope: 'Site mobilization, Bill of Quantities (BOQ) cost control, third-party concrete and rebar testing, and stage-by-stage site supervision. [PLACEHOLDER: Insert building type and scope].',
+    yearAndStatus: '[PLACEHOLDER: Year & Status]',
+    verifiedOutcome: '[PLACEHOLDER: Insert verified structural handover or inspection outcome with source]',
+    clientName: '[PLACEHOLDER: Client Name — include only if permitted]',
     image: introConstructionImg,
-    highlights: ['Soil Stabilization Engineering', 'Certified Structural Audits', 'Milestone-Based Client Reporting'],
-    status: 'Ongoing Execution'
+    imageAlt: 'Engineers wearing hardhats and safety vests inspecting construction blueprints on site',
+    isIllustrative: true,
+    caseStudy: {
+      brief: 'Deliver civil and structural building works with transparent Bill of Quantities tracking and documented stage inspections. [PLACEHOLDER: Insert verified project brief].',
+      challenge: 'High rainfall conditions and material supply fluctuations require careful foundation scheduling, steel reinforcement checks, and supplier coordination. [PLACEHOLDER: Add actual site conditions].',
+      approach: 'Resident site engineers tracked daily casting schedules, slump and cube test samples, and milestone sign-offs against the approved BOQ. [PLACEHOLDER: Add actual construction methods].',
+      outcome: '[PLACEHOLDER: Insert verified completion status and documented inspection results].',
+      gallery: [
+        {
+          image: introConstructionImg,
+          alt: 'Project managers inspecting architectural plans during active structural supervision',
+          caption: 'On-site drawing verification and contractor coordination.',
+          isIllustrative: true,
+        },
+        {
+          image: downstreamEnergyImg,
+          alt: 'Industrial steel piping and logistics equipment representing site supply and heavy infrastructure support',
+          caption: 'Site logistics and fuel supply coordination for heavy equipment.',
+          isIllustrative: true,
+        },
+      ],
+    },
   },
   {
     id: 'commercial-solar',
-    name: 'Industrial Solar Hybrid Installation',
-    location: 'Western Industrial Hub, Nigeria',
-    category: 'Energy',
-    shortDescription: 'Turnkey commercial rooftop solar photovoltaic array engineered to reduce reliance on grid diesel generators.',
-    fullDescription: 'A high-capacity clean energy initiative engineered by Petik’s renewable energy division. Featuring commercial mono-crystalline PV modules coupled with high-efficiency inverters, this installation reduces facility energy expenditure by over 45% while guaranteeing silent daytime operations.',
+    name: '[PLACEHOLDER: Commercial Solar Installation Project Name]',
+    location: '[PLACEHOLDER: City & State]',
+    sector: 'Energy',
+    enquiryService: 'Renewable Energy Solutions',
+    role: 'Solar Engineering & Installation Contractor',
+    scope: 'Site load audit, rooftop solar PV array mounting, hybrid inverter-battery integration, and commissioning checks. [PLACEHOLDER: Insert verified kWp and storage capacity].',
+    yearAndStatus: '[PLACEHOLDER: Year & Status]',
+    verifiedOutcome: '[PLACEHOLDER: Insert verified energy generation or fuel-saving figure with source]',
+    clientName: '[PLACEHOLDER: Client Name — include only if permitted]',
     image: renewableSolarImg,
-    highlights: ['300kWp Solar Generation Capacity', 'Smart Inverter Synchronization', '45% Energy Cost Reduction'],
-    status: 'Commissioned'
-  }
+    imageAlt: 'Rooftop solar photovoltaic panel array installed over a commercial facility',
+    isIllustrative: true,
+    caseStudy: {
+      brief: 'Design and install a commercial rooftop solar photovoltaic and hybrid inverter system to supplement grid and diesel power. [PLACEHOLDER: Insert verified site brief].',
+      challenge: 'Commercial operating hours require steady daytime power without frequent generator switching or voltage fluctuations. [PLACEHOLDER: Add actual electrical load constraints].',
+      approach: 'Petik assessed daytime electrical loads, engineered the rooftop PV mounting layout, and integrated hybrid inverters and battery storage. [PLACEHOLDER: Add verified equipment specs].',
+      outcome: '[PLACEHOLDER: Insert verified commissioning date, measured output, and source].',
+      gallery: [
+        {
+          image: renewableSolarImg,
+          alt: 'Commercial rooftop solar photovoltaic panels installed in neat rows',
+          caption: 'Commercial rooftop PV array and inverter integration.',
+          isIllustrative: true,
+        },
+        {
+          image: downstreamEnergyImg,
+          alt: 'Fuel storage and distribution manifold infrastructure representing hybrid diesel-solar site coordination',
+          caption: 'Hybrid generator-fuel logistics interface for backup power.',
+          isIllustrative: true,
+        },
+      ],
+    },
+  },
 ];
 
 export const INSIGHTS_DATA: InsightArticle[] = [
@@ -195,14 +313,14 @@ export const INSIGHTS_DATA: InsightArticle[] = [
     readTime: '5 min read',
     excerpt: 'Examining what true reliability entails in the Nigerian construction landscape—looking past marketing language into structural discipline, site mobilization, and mitigating diaspora building risks.',
     content: [
-      'In Nigeria’s vibrant building industry, the word "reliability" is often overused and under-delivered. For developers, institutional investors, and diaspora clients sending capital home, the true test of a construction partner is not their sales presentation, but what happens on site when unforeseen challenges arise.',
-      'True reliability begins with disciplined site mobilization. Projects that stall often do so because contractor pricing failed to account for supply chain inflation or local logistics. At Petik Limited, milestone contracts are linked directly to transparent Bill of Quantities (BOQ) frameworks that eliminate surprises.',
-      'Furthermore, mitigating diaspora building risks requires uncompromised visibility. Remote clients should not rely on staged photos; they require structured engineering logs, drone progress scans, and certified receipts of material tests.'
+      'In Nigeria’s building industry, "reliability" is often promised in brochures rather than demonstrated on site. For property owners and diaspora clients funding builds remotely, the practical measure of a contractor is how work is scheduled, costed, and supervised day to day.',
+      'Consistent delivery starts with clear site mobilization and realistic pricing that accounts for material price movements and local logistics. Linking milestone contracts to line-item Bills of Quantities (BOQ) reduces scope disputes and unexpected variations.',
+      'Remote clients also need clear site visibility—structured engineering logs, dated progress photographs, and laboratory test receipts rather than informal updates.'
     ],
     keyTakeaways: [
-      'Milestone-linked contracts prevent capital exhaustion before structural completion.',
-      'Diaspora building projects require verifiable third-party material batch testing.',
-      'Transparency in BOQ formulation is the strongest predictor of on-time delivery.'
+      'Milestone-linked contracts help prevent capital shortfalls before structural completion.',
+      'Diaspora building projects benefit from independent material batch testing.',
+      'Line-item BOQ pricing makes budgets and timelines easier to track.'
     ],
     image: introConstructionImg
   },
@@ -212,16 +330,16 @@ export const INSIGHTS_DATA: InsightArticle[] = [
     category: 'Engineering Best Practices',
     date: 'February 2026',
     readTime: '6 min read',
-    excerpt: 'A critical breakdown of stage-by-stage inspections, concrete batch testing, and structural integrity audits required to prevent structural defects in modern Nigerian developments.',
+    excerpt: 'A breakdown of stage-by-stage inspections, concrete batch testing, and structural checks needed to prevent defects in modern Nigerian buildings.',
     content: [
-      'Structural defects in modern buildings rarely happen by accident; they are almost always the result of compounding shortcuts during foundation preparation and concrete curing.',
-      'At Petik Limited, our quality control framework mandates independent testing at three vital junctures: tensile strength verification of structural rebar, standard slump testing on fresh concrete batches, and 28-day cube crushing tests conducted in certified laboratories.',
-      'Site supervision cannot be conducted from an air-conditioned office. Having resident site engineers present during every major cast ensures vibration standards are maintained and cover blocks prevent rebar exposure to moisture.'
+      'Structural defects in buildings are commonly caused by shortcuts taken during foundation preparation, reinforcement placement, and concrete curing.',
+      'Quality control should require independent checks at three points: tensile testing of structural rebar, slump testing on fresh concrete batches, and standard cube crushing tests at external testing laboratories.',
+      'Site supervision requires resident engineers on the ground during every major concrete pour to monitor compaction, concrete cover, and formwork alignment.'
     ],
     keyTakeaways: [
-      'Rebar gauge verification prevents catastrophic structural under-reinforcement.',
-      '28-day concrete cube crush tests provide permanent legal proof of structural integrity.',
-      'Continuous on-site supervision during casting prevents honeycombing and void defects.'
+      'Rebar gauge testing checks reinforcement steel before concrete pours.',
+      'Concrete cube crush tests provide documented evidence of compressive strength.',
+      'On-site supervision during casting reduces honeycombing and void defects.'
     ],
     image: heroCorporateImg
   },
@@ -231,16 +349,16 @@ export const INSIGHTS_DATA: InsightArticle[] = [
     category: 'Urban Infrastructure',
     date: 'January 2026',
     readTime: '4 min read',
-    excerpt: 'Exploring modern residential planning, sustainable utilities, and community-centered spatial design that elevate living standards across emerging Nigerian cities.',
+    excerpt: 'Exploring residential site planning, reliable utilities, and drainage design across growing Nigerian cities.',
     content: [
-      'A home is more than four walls; it is an integrated ecosystem that must support work, family wellness, and security. In fast-growing urban centers, public infrastructure often lags behind private construction, requiring developers to build self-sustaining enclaves.',
-      'From decentralized solar-diesel hybrid microgrids to closed drainage systems that prevent rainy season erosion, forward-thinking real estate development must prioritize civil infrastructure before aesthetic finishes.',
-      'At developments like Amarisa Court, spatial planning incorporates natural ventilation, secure pedestrian paths, and dedicated children’s recreational pockets, proving that thoughtful engineering creates generational value.'
+      'A home relies on supporting utilities as much as indoor finishes. Where public infrastructure is uneven, residential estates must plan power, water supply, and drainage up front.',
+      'Hybrid solar-diesel power systems, borehole filtration, and enclosed storm drainage should be designed alongside the building layout rather than added as an afterthought.',
+      'At properties like Amarisa Court, site planning considers natural ventilation, pedestrian pathways, and practical outdoor space so buildings remain comfortable and easier to maintain.'
     ],
     keyTakeaways: [
-      'Integrated utilities (hybrid power, borehole filtration) create resilient living environments.',
-      'Acoustic insulation and natural cross-ventilation reduce active cooling energy demands.',
-      'Pedestrian-safe circulation paths improve quality of life for family residents.'
+      'Integrated power and water systems make residential living more predictable.',
+      'Natural cross-ventilation helps reduce mechanical cooling demand.',
+      'Dedicated pedestrian paths improve everyday safety for residents.'
     ],
     image: amarisaCourtImg
   },
@@ -250,16 +368,16 @@ export const INSIGHTS_DATA: InsightArticle[] = [
     category: 'Construction Standards',
     date: 'December 2025',
     readTime: '5 min read',
-    excerpt: 'Practical steps for property owners and diaspora investors to manage building costs, verify site progress, and navigate Nigeria’s construction milestones from blueprint to completion.',
+    excerpt: 'Practical steps for property owners and diaspora clients to manage building costs, inspect site progress, and track construction stages from drawings to handover.',
     content: [
-      'Constructing a residential or commercial property remotely or amid competing executive responsibilities does not have to involve site disputes or sudden cost escalations.',
-      'Structured project management breaks the entire lifecycle into auditable stages—substructure earthworks, superstructure framing, roofing, MEP rough-ins, and interior finishes—with each phase signed off only after quality inspection.',
-      'By establishing clear material specifications upfront and centralizing procurement oversight, property owners maintain predictability over budget and completion timelines.'
+      'Managing a residential or commercial build remotely does not have to mean constant site disputes or unplanned cost increases.',
+      'Breaking construction into clear inspection stages—substructure earthworks, superstructure framing, roofing, MEP rough-ins, and finishes—ensures each phase is checked before the next disbursement.',
+      'Locking down material specifications early and tracking supplier deliveries helps property owners keep budgets and schedules predictable.'
     ],
     keyTakeaways: [
-      'Pre-construction architectural and structural coordination eliminates costly on-site rework.',
-      'Stage-by-stage financial disbursements protect client capital.',
-      'Verified procurement channels safeguard against substandard building materials.'
+      'Coordinating architectural and structural drawings early reduces on-site rework.',
+      'Stage-by-stage disbursements protect client capital.',
+      'Documented supplier sourcing helps avoid substandard building materials.'
     ],
     image: renewableSolarImg
   }
@@ -320,19 +438,19 @@ export const GALLERY_ITEMS: GalleryItem[] = [
 export const EXECUTIVE_LEADERSHIP_DATA = {
   eyebrow: 'GOVERNANCE & STEWARDSHIP',
   title: 'Executive Leadership',
-  summary: 'Petik Limited’s leadership team guides multidisciplinary operations across real estate, civil construction, renewable energy, and downstream services with a focus on accountability, technical rigor, and long-term partner trust.',
+  summary: 'Petik Limited’s management team oversees operations across real estate, civil construction, facility management, solar energy, and downstream fuel logistics.',
   pillars: [
     {
       title: 'Engineering & Quality Oversight',
-      detail: 'Executive oversight directly enforces material verification, structural safety audits, and transparent Bill of Quantities governance on every active site.'
+      detail: 'Management enforces material testing, stage-by-stage site inspections, and line-item Bill of Quantities tracking across active sites.'
     },
     {
-      title: 'Corporate Governance & Integrity',
-      detail: 'Guided by integrity, professionalism, continuous development, innovation, and accountability across all Nigerian commercial hubs.'
+      title: 'Corporate Governance',
+      detail: 'Operations are managed from our Lekki Phase 1 headquarters with regional coordination in Port Harcourt and Osogbo. [PLACEHOLDER: Insert CAC RC Number & Leadership Roster].'
     },
     {
-      title: 'Community & Philanthropic Alignment',
-      detail: 'Leadership actively champions corporate social responsibility and regional development initiatives, including collaborative outreach connected with the Petik Development Foundation and executive stewardship led by Datimi Thomas.'
+      title: 'Community Outreach',
+      detail: 'Community initiatives are coordinated alongside the Petik Development Foundation under executive leadership led by Datimi Thomas. [PLACEHOLDER: Insert verified board roles and biographies].'
     }
   ]
 };
@@ -340,19 +458,19 @@ export const EXECUTIVE_LEADERSHIP_DATA = {
 export const FOUNDATION_DATA = {
   eyebrow: 'CORPORATE SOCIAL RESPONSIBILITY',
   title: 'Petik Development Foundation',
-  summary: 'The Petik Development Foundation reflects our conviction that enduring corporate growth must uplift surrounding communities through practical education, youth empowerment, and sustainable civic support.',
+  summary: 'The Petik Development Foundation focuses on education support, youth skills development, and local community initiatives. [PLACEHOLDER: Insert verified foundation programmes and registration details].',
   focusAreas: [
     {
       title: 'Education & Youth Support',
-      description: 'Supporting access to learning resources, mentorship, and practical skills initiatives that prepare young Nigerians for technical and entrepreneurial careers.'
+      description: 'Supporting access to learning resources and skills training for young people. [PLACEHOLDER: Insert programme details].'
     },
     {
-      title: 'Community Infrastructure & Welfare',
-      description: 'Partnering with local stakeholders on targeted community interventions designed to improve everyday resilience and neighborhood wellbeing.'
+      title: 'Community Welfare',
+      description: 'Collaborating with local stakeholders on targeted neighborhood support initiatives. [PLACEHOLDER: Insert programme details].'
     },
     {
-      title: 'Transparent Impact Stewardship',
-      description: 'Operating with the same accountability and milestone discipline that defines Petik Limited’s commercial engineering and real estate engagements.'
+      title: 'Accountable Delivery',
+      description: 'Documenting community grants and completed local initiatives transparently. [PLACEHOLDER: Insert annual summary when available].'
     }
   ]
 };
@@ -360,22 +478,22 @@ export const FOUNDATION_DATA = {
 export const WHY_PETIK_PRINCIPLES = [
   {
     number: '01',
-    title: 'Integrated Expertise',
-    description: 'We bring together multidisciplinary engineering, real estate valuation, and energy logistics under one accountable leadership team, eliminating the friction of disconnected subcontractors.'
+    title: 'Single-Team Coordination',
+    description: 'Our property advisors, civil engineers, facility managers, and solar technicians work under one contract, reducing handoff gaps between design, building, and power setup.'
   },
   {
     number: '02',
-    title: 'Strategic Thinking',
-    description: 'Every project is evaluated through commercial feasibility, regulatory compliance, and risk containment—protecting investor capital across fluctuating economic cycles in Nigeria.'
+    title: 'Feasibility & Title Checks',
+    description: 'Before capital is committed, we verify land titles, statutory approvals, soil conditions, and Bills of Quantities so clients know costs and constraints upfront.'
   },
   {
     number: '03',
-    title: 'Quality-Focused Delivery',
-    description: 'We enforce stringent material testing, stage-by-stage inspections, and transparent milestone governance from initial foundation earthworks to final key handover.'
+    title: 'On-Site Inspection & Testing',
+    description: 'Resident engineers check rebar sizing, concrete mix slumps, and stage-by-stage workmanship before milestone sign-offs or building handover.'
   },
   {
     number: '04',
-    title: 'Long-Term Value Creation',
-    description: 'We build durable physical structures and reliable clean energy systems designed to generate steady commercial yields and retain functional integrity for decades.'
+    title: 'Ongoing Facility & Power Support',
+    description: 'After handover, our facility teams handle preventive MEP maintenance, generator-solar upkeep, security, and tenancy operations.'
   }
 ];

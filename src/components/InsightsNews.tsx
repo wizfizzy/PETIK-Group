@@ -36,12 +36,6 @@ export const InsightsNews: React.FC<InsightsNewsProps> = ({ onEnquire, onOpenBlo
               Industry analysis, structural quality control standards, and real estate guidance derived from active project delivery in Nigeria.
             </p>
           </div>
-
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
-              Verified Technical Editorial
-            </span>
-          </div>
         </div>
 
         {/* 3-Column Editorial Grid */}
@@ -99,12 +93,14 @@ export const InsightsNews: React.FC<InsightsNewsProps> = ({ onEnquire, onOpenBlo
                   onClick={() => setSelectedArticle(article)}
                   className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#102B46] group-hover:text-[#a17d2c] transition-colors"
                 >
-                  <span>Read Article</span>
+                  <span>
+                    Read Article<span className="sr-only">: {article.title}</span>
+                  </span>
                   <ArrowRight className="w-3.5 h-3.5 text-[#a17d2c] transition-transform group-hover:translate-x-1" />
                 </button>
 
                 <span className="text-[11px] text-slate-400">
-                  Petik Research
+                  Petik Insights
                 </span>
               </div>
             </article>
@@ -113,14 +109,17 @@ export const InsightsNews: React.FC<InsightsNewsProps> = ({ onEnquire, onOpenBlo
 
         {/* View All Insights CTA */}
         <div className="flex items-center justify-center">
-          <button
-            type="button"
-            onClick={onOpenBlogPage}
+          <a
+            href="/insights"
+            onClick={(e) => {
+              e.preventDefault();
+              onOpenBlogPage();
+            }}
             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-xs font-semibold uppercase tracking-wider text-[#102B46] bg-white border border-slate-300 hover:border-[#102B46] hover:bg-slate-50 transition-colors shadow-sm"
           >
-            <span>View All Insights &amp; Archives</span>
+            <span>Browse All Technical Insights &amp; Archives</span>
             <ArrowRight className="w-3.5 h-3.5 text-[#a17d2c]" />
-          </button>
+          </a>
         </div>
       </div>
 

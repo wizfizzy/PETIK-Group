@@ -19,10 +19,10 @@ export const WhyPetik: React.FC = () => {
             THE PETIK APPROACH
           </span>
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight leading-tight mb-4 [text-wrap:balance]">
-            Built Around Value, Driven by Possibility.
+            How Petik Works.
           </h2>
           <p className="text-base text-slate-300 leading-relaxed font-normal">
-            Four guiding operating principles define how Petik Limited structures partnerships, manages complex civil works, and safeguards long-term asset performance.
+            Four practical standards govern how Petik Limited scopes contracts, tests construction materials, supervises contractors, and manages completed properties.
           </p>
         </div>
 

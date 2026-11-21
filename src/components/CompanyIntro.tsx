@@ -19,10 +19,10 @@ export const CompanyIntro: React.FC = () => {
                 />
               </div>
 
-              {/* Verified Operational Focus Badge */}
+              {/* Regional Office Summary */}
               <div className="mt-4 p-4 rounded-xl bg-white border border-[#EDEFF1] shadow-sm">
                 <div className="text-xs font-semibold text-[#102B46] uppercase tracking-wider mb-1">
-                  Active Regional Focus
+                  Office &amp; Operating Locations
                 </div>
                 <div className="text-sm text-slate-600 flex items-center gap-2">
                   <span>Headquartered in Lekki, Lagos</span>
@@ -47,27 +47,27 @@ export const CompanyIntro: React.FC = () => {
               </h2>
 
               <p className="text-base sm:text-lg text-slate-700 leading-relaxed mb-6 font-normal">
-                Petik Limited brings together expertise across real estate, construction, project management, renewable energy, and related business sectors. Our approach is built around delivering practical solutions, developing opportunities, and creating lasting value.
+                Petik Limited operates across real estate development and advisory, civil construction and project management, facility management, solar energy systems, oil and gas downstream logistics, and Amarisa Court shortlet accommodation.
               </p>
 
               <p className="text-sm sm:text-base text-slate-600 leading-relaxed mb-8">
-                Operating across key commercial and emerging markets in Nigeria, our multidisciplinary structure enables clients to navigate property developments, civil construction works, facility operations, and energy transitions with clear oversight and accountable execution.
+                With our head office in Lekki, Lagos and operations in Port Harcourt and Osogbo, we coordinate site planning, building construction, facility upkeep, and backup solar installations under one team.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-[#a17d2c] shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="text-sm font-semibold text-[#102B46]">Disciplined Execution</h4>
-                    <p className="text-xs text-slate-600">Transparent BOQ management and certified material verification.</p>
+                    <h4 className="text-sm font-semibold text-[#102B46]">Project Controls &amp; Site Supervision</h4>
+                    <p className="text-xs text-slate-600">Line-item Bill of Quantities (BOQ) tracking and third-party concrete and steel testing.</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-[#a17d2c] shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="text-sm font-semibold text-[#102B46]">Cross-Sector Synergies</h4>
-                    <p className="text-xs text-slate-600">Unifying property development, engineering, and sustainable energy.</p>
+                    <h4 className="text-sm font-semibold text-[#102B46]">Integrated Project Delivery</h4>
+                    <p className="text-xs text-slate-600">Coordinating land due diligence, building works, property maintenance, and solar power in one firm.</p>
                   </div>
                 </div>
               </div>

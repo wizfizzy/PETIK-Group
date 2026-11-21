@@ -108,7 +108,7 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ onDiscussPro
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <div className="pt-4 border-t border-slate-100 flex items-center">
                   <button
                     type="button"
                     onClick={() => setSelectedProject(project)}
@@ -117,10 +117,6 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ onDiscussPro
                     <span>View Project Scope</span>
                     <ArrowRight className="w-3.5 h-3.5 text-[#a17d2c]" />
                   </button>
-
-                  <span className="text-[11px] text-slate-500 font-medium">
-                    {project.status}
-                  </span>
                 </div>
               </div>
             </div>

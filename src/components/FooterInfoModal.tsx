@@ -29,12 +29,12 @@ const FAQ_ITEMS: FaqItem[] = [
   {
     question: 'How does Petik ensure quality control and transparency on construction projects?',
     answer:
-      'Projects are governed by detailed Bills of Quantities (BOQ), certified material testing before placement, stage-by-stage structural inspections, and milestone-based progress reporting for both local and diaspora clients.',
+      'Projects are governed by line-item Bills of Quantities (BOQ), third-party concrete and steel testing before placement, stage-by-stage structural inspections, and milestone progress reporting for local and diaspora clients.',
   },
   {
     question: 'Can corporate clients or investors book shortlet stays at Amarisa Court?',
     answer:
-      'Yes. Amarisa Court provides serviced suites with round-the-clock power backup, dedicated security, and modern furnishings tailored for corporate executives, visiting teams, and family stays. Availability enquiries can be submitted directly through our consultation desk.',
+      'Yes. Amarisa Court provides serviced suites in Osogbo with hybrid solar and generator backup power, on-site security, and modern furnishings for corporate travellers, visiting teams, and families. Availability enquiries can be submitted through our contact form.',
   },
   {
     question: 'How do I initiate a project feasibility review or service consultation?',
@@ -227,7 +227,7 @@ export const FooterInfoModal: React.FC<FooterInfoModalProps> = ({
                   1. Informational Purpose
                 </h3>
                 <p>
-                  Content presented across this corporate homepage concept—including service capability descriptions, regional focus areas, and technical insights—is provided for general corporate overview and preliminary consultation purposes.
+                  Content presented on this website—including service capability descriptions, office locations, and technical articles—is provided for general corporate information and preliminary enquiry purposes.
                 </p>
               </div>
               <div>

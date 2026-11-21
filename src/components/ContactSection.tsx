@@ -1,6 +1,8 @@
 import React, { useState, forwardRef, useImperativeHandle } from 'react';
-import { Mail, MapPin, Send, CheckCircle2, Clock, AlertCircle } from 'lucide-react';
+import { Mail, MapPin, Phone, Send, CheckCircle2, Clock, AlertCircle, Building2 } from 'lucide-react';
 import { validateContactForm, generateEnquiryReference, ContactFormData } from '../utils/contact';
+import { TRUST_SIGNALS, buildTelHref } from '../utils/trustSignals';
+import { DirectContactButtons } from './DirectContactButtons';
 
 export interface ContactSectionHandle {
   prefillService: (serviceName: string) => void;
@@ -97,7 +99,7 @@ export const ContactSection = forwardRef<ContactSectionHandle>((_, ref) => {
             Have a Project in Mind?
           </h2>
           <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
-            Whether you're exploring a development opportunity, planning a project, or looking for a strategic business partner, let's start a conversation.
+            Contact our team about a property advisory brief, civil construction scope, facility management contract, solar PV installation, fuel supply request, or Amarisa Court booking.
           </p>
         </div>
 
@@ -146,11 +148,40 @@ export const ContactSection = forwardRef<ContactSectionHandle>((_, ref) => {
                 </div>
 
                 <div className="flex items-start gap-3.5">
+                  <Phone className="w-5 h-5 text-[#a17d2c] shrink-0 mt-0.5" />
+                  <div>
+                    <span className="block font-semibold text-white">Phone &amp; WhatsApp</span>
+                    {buildTelHref(TRUST_SIGNALS.phoneNumber) ? (
+                      <a
+                        href={buildTelHref(TRUST_SIGNALS.phoneNumber)!}
+                        className="text-xs text-slate-300 hover:text-white transition-colors"
+                      >
+                        {TRUST_SIGNALS.phoneNumber}
+                      </a>
+                    ) : (
+                      <p className="text-xs text-slate-300">{TRUST_SIGNALS.phoneNumber}</p>
+                    )}
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3.5">
+                  <Building2 className="w-5 h-5 text-[#a17d2c] shrink-0 mt-0.5" />
+                  <div>
+                    <span className="block font-semibold text-white">CAC Registration</span>
+                    <p className="text-xs text-slate-300">{TRUST_SIGNALS.cacRcNumber}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3.5">
                   <Clock className="w-5 h-5 text-[#a17d2c] shrink-0 mt-0.5" />
                   <div>
                     <span className="block font-semibold text-white">Business Hours</span>
                     <p className="text-xs text-slate-300">Monday – Friday: 8:00 AM – 5:00 PM (WAT)</p>
                   </div>
+                </div>
+
+                <div className="pt-2 border-t border-white/10">
+                  <DirectContactButtons />
                 </div>
               </div>
             </div>
@@ -183,9 +214,12 @@ export const ContactSection = forwardRef<ContactSectionHandle>((_, ref) => {
                     </p>
                   </div>
 
-                  <div className="p-4 rounded-xl bg-slate-50 border border-slate-100 text-xs text-slate-500 max-w-md mx-auto text-left">
-                    <span className="font-semibold text-slate-700 block mb-1">Production Integration Note:</span>
-                    In full production deployment, this form dispatches authenticated webhook payloads to Petik's corporate mail server or CRM with attached BOQ documents.
+                  <div className="p-4 rounded-xl bg-slate-50 border border-slate-100 text-xs text-slate-600 max-w-md mx-auto text-left">
+                    To attach architectural drawings or Bills of Quantities directly, email{' '}
+                    <a href="mailto:info@petiklimited.com" className="font-semibold text-[#102B46] underline">
+                      info@petiklimited.com
+                    </a>{' '}
+                    with your reference number ({submissionSuccess}).
                   </div>
 
                   <button
@@ -271,7 +305,6 @@ export const ContactSection = forwardRef<ContactSectionHandle>((_, ref) => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        placeholder="+234 803 000 0000"
                         className={`w-full px-3.5 py-2.5 rounded-lg border text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#102B46] transition-colors ${
                           errors.phone ? 'border-rose-400 bg-rose-50/30' : 'border-slate-200 bg-slate-50/50'
                         }`}

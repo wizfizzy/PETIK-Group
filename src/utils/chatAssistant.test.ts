@@ -33,3 +33,17 @@ test('generatePetikChatReply returns helpful fallback for general messages', () 
   assert.match(reply.text, /Petik Limited/i);
   assert.equal(reply.actionLabel, 'Submit Project Enquiry');
 });
+
+test('generatePetikChatReply avoids unverified claims, 24/7 guarantees, and certified badges', () => {
+  const prompts = [
+    'Amarisa Court shortlet',
+    'Construction BOQ',
+    'Renewable energy solar',
+    'Facility management',
+    'Oil and gas downstream',
+  ];
+  for (const prompt of prompts) {
+    const reply = generatePetikChatReply(prompt);
+    assert.doesNotMatch(reply.text, /24\/7|%|kWp|certified|guaranteed/i);
+  }
+});

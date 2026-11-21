@@ -10,12 +10,12 @@ export const FeaturedProperty: React.FC<FeaturedPropertyProps> = ({ onBookShortl
   const [showDetailsModal, setShowDetailsModal] = useState(false);
 
   const amenities = [
-    { icon: <Zap className="w-4 h-4 text-[#a17d2c]" />, label: 'Guaranteed 24/7 Power Backup' },
-    { icon: <Wifi className="w-4 h-4 text-[#a17d2c]" />, label: 'High-Speed Dedicated Fibre' },
-    { icon: <Shield className="w-4 h-4 text-[#a17d2c]" />, label: 'Round-the-Clock Security' },
+    { icon: <Zap className="w-4 h-4 text-[#a17d2c]" />, label: 'Hybrid Solar & Generator Backup Power' },
+    { icon: <Wifi className="w-4 h-4 text-[#a17d2c]" />, label: 'Dedicated Fibre Internet' },
+    { icon: <Shield className="w-4 h-4 text-[#a17d2c]" />, label: 'On-Site Security & Access Control' },
     { icon: <Coffee className="w-4 h-4 text-[#a17d2c]" />, label: 'Fully Equipped Modern Kitchen' },
     { icon: <Tv className="w-4 h-4 text-[#a17d2c]" />, label: 'Smart TV & Streaming Ready' },
-    { icon: <Sparkles className="w-4 h-4 text-[#a17d2c]" />, label: 'Daily Housekeeping on Request' },
+    { icon: <Sparkles className="w-4 h-4 text-[#a17d2c]" />, label: 'Housekeeping on Request' },
   ];
 
   return (
@@ -27,7 +27,7 @@ export const FeaturedProperty: React.FC<FeaturedPropertyProps> = ({ onBookShortl
             <div className="lg:col-span-7 relative min-h-[360px] lg:min-h-[500px]">
               <img
                 src={amarisaCourtImg}
-                alt="Amarisa Court luxury shortlet apartment interior living room suite"
+                alt="Furnished living area and open kitchenette representing Amarisa Court shortlet apartments in Osogbo"
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
               />
@@ -35,6 +35,11 @@ export const FeaturedProperty: React.FC<FeaturedPropertyProps> = ({ onBookShortl
               <div className="absolute top-6 left-6">
                 <span className="px-3.5 py-1.5 rounded-lg bg-[#102B46]/80 backdrop-blur-md text-xs font-semibold uppercase tracking-wider text-white border border-white/10">
                   Featured Property · Shortlet Living
+                </span>
+              </div>
+              <div className="hidden lg:block absolute bottom-6 left-6">
+                <span className="px-2.5 py-1 rounded bg-black/70 backdrop-blur-sm text-[11px] font-medium text-white border border-white/15">
+                  Illustrative image
                 </span>
               </div>
             </div>
@@ -51,7 +56,7 @@ export const FeaturedProperty: React.FC<FeaturedPropertyProps> = ({ onBookShortl
                 </h2>
 
                 <p className="text-base text-slate-300 leading-relaxed mb-8 font-normal">
-                  Discover Amarisa Court, a shortlet accommodation offering designed to provide comfort and convenience. Created for business executives, family vacations, and short-stay visitors seeking understated luxury.
+                  Amarisa Court provides furnished shortlet apartments in Osogbo for business travellers, visiting teams, and families. [PLACEHOLDER: Insert unit count, suite types, and nightly rate].
                 </p>
 
                 {/* Amenities Grid */}
@@ -118,7 +123,7 @@ export const FeaturedProperty: React.FC<FeaturedPropertyProps> = ({ onBookShortl
             </div>
 
             <p className="text-sm text-slate-700 leading-relaxed mb-6">
-              Amarisa Court is Petik Limited’s bespoke shortlet accommodation concept. Structured to provide corporate travelers and private visitors with residential calm and hotel-grade reliability, each unit is equipped with independent hybrid power, fiber internet, contemporary kitchenettes, and dedicated security.
+              Amarisa Court is Petik Limited’s serviced shortlet accommodation in Osogbo. Units include hybrid solar and generator backup power, fibre internet, fitted kitchens, and on-site security. [PLACEHOLDER: Insert street address, apartment breakdown, and nightly rate range].
             </p>
 
             <div className="space-y-4 mb-6">

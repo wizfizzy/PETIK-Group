@@ -1,11 +1,14 @@
 import React from 'react';
-import { MapPin, Mail } from 'lucide-react';
+import { MapPin, Mail, Phone } from 'lucide-react';
 import { FooterInfoTab } from './FooterInfoModal';
 import { ChatWidget } from './ChatWidget';
+import { DirectContactButtons } from './DirectContactButtons';
 import { INSIGHTS_DATA } from '../data/companyData';
+import { TRUST_SIGNALS, buildTelHref } from '../utils/trustSignals';
 
 interface FooterProps {
   onNavigateHomeSection: (sectionId: string) => void;
+  onOpenProjectsPage: () => void;
   onOpenInfoTab: (tab: FooterInfoTab) => void;
   onOpenInsightArticle: (articleId: string) => void;
   onOpenEnquiry: (prefilledSector?: string) => void;
@@ -13,10 +16,13 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({
   onNavigateHomeSection,
+  onOpenProjectsPage,
   onOpenInfoTab,
   onOpenInsightArticle,
   onOpenEnquiry,
 }) => {
+  const telHref = buildTelHref(TRUST_SIGNALS.phoneNumber);
+
   return (
     <footer className="bg-[#102B46] text-white border-t border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
@@ -33,11 +39,11 @@ export const Footer: React.FC<FooterProps> = ({
             </div>
 
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-sm">
-              An indigenous Nigerian company delivering multidisciplinary solutions across real estate development, civil construction & project management, renewable energy, and energy logistics.
+              An indigenous Nigerian company operating across real estate development, civil construction and project management, facility management, solar energy, downstream fuel logistics, and Amarisa Court shortlets.
             </p>
 
             <div className="pt-2 text-xs text-slate-400">
-              <span className="font-semibold text-slate-200">RC Registry:</span> Nigerian Corporate Affairs Commission
+              <span className="font-semibold text-slate-200">CAC RC Number:</span> {TRUST_SIGNALS.cacRcNumber}
             </div>
           </div>
 
@@ -48,13 +54,13 @@ export const Footer: React.FC<FooterProps> = ({
             </h4>
             <ul className="space-y-2.5 text-xs sm:text-sm text-slate-300">
               {[
-                { label: 'Home', sectionId: 'hero' },
-                { label: 'About', sectionId: 'about' },
-                { label: 'Contact', sectionId: 'contact' },
+                { label: 'Home', sectionId: 'hero', href: '/' },
+                { label: 'About', sectionId: 'about', href: '/#about' },
+                { label: 'Contact', sectionId: 'contact', href: '/#contact' },
               ].map((item) => (
                 <li key={item.label}>
                   <a
-                    href={`#${item.sectionId}`}
+                    href={item.href}
                     onClick={(e) => {
                       e.preventDefault();
                       onNavigateHomeSection(item.sectionId);
@@ -65,6 +71,18 @@ export const Footer: React.FC<FooterProps> = ({
                   </a>
                 </li>
               ))}
+              <li>
+                <a
+                  href="/projects"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onOpenProjectsPage();
+                  }}
+                  className="hover:text-white transition-colors inline-block"
+                >
+                  Projects
+                </a>
+              </li>
               {(
                 [
                   { label: 'FAQ', tab: 'faq' },
@@ -93,13 +111,16 @@ export const Footer: React.FC<FooterProps> = ({
             <ul className="space-y-3 text-xs sm:text-sm text-slate-300">
               {INSIGHTS_DATA.map((article) => (
                 <li key={article.id}>
-                  <button
-                    type="button"
-                    onClick={() => onOpenInsightArticle(article.id)}
-                    className="hover:text-white transition-colors text-left leading-snug"
+                  <a
+                    href="/insights"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onOpenInsightArticle(article.id);
+                    }}
+                    className="hover:text-white transition-colors text-left leading-snug inline-block"
                   >
                     {article.title}
-                  </button>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -108,7 +129,7 @@ export const Footer: React.FC<FooterProps> = ({
           {/* Corporate Office Information */}
           <div className="lg:col-span-3 space-y-4">
             <h4 className="text-xs font-bold uppercase tracking-widest text-[#a17d2c]">
-              Verified Office
+              Corporate Office
             </h4>
             <div className="space-y-3 text-xs sm:text-sm text-slate-300">
               <div className="flex items-start gap-2.5">
@@ -128,7 +149,22 @@ export const Footer: React.FC<FooterProps> = ({
                 </a>
               </div>
 
-              <div className="pt-2 text-xs text-slate-400">
+              <div className="flex items-start gap-2.5">
+                <Phone className="w-4 h-4 text-[#a17d2c] shrink-0 mt-0.5" />
+                {telHref ? (
+                  <a href={telHref} className="hover:text-white transition-colors">
+                    {TRUST_SIGNALS.phoneNumber}
+                  </a>
+                ) : (
+                  <span className="text-xs text-slate-400">{TRUST_SIGNALS.phoneNumber}</span>
+                )}
+              </div>
+
+              <div className="pt-1">
+                <DirectContactButtons compact />
+              </div>
+
+              <div className="pt-1 text-xs text-slate-400">
                 <span>Regional Footprint: Port Harcourt · Osogbo</span>
               </div>
             </div>
