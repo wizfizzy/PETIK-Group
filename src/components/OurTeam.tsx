@@ -12,7 +12,7 @@ export const OurTeam: React.FC = () => {
   return (
     <section id="team" className="pt-8 sm:pt-10 pb-20 sm:pb-24 bg-white border-b border-[#EDEFF1] scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-stretch">
           {/* Left Column: Narrative Copy */}
           <div className="lg:col-span-6">
             <h2 className="font-display text-xl sm:text-2xl font-bold text-[#102B46] tracking-tight leading-snug uppercase [text-wrap:balance]">
@@ -35,8 +35,8 @@ export const OurTeam: React.FC = () => {
           </div>
 
           {/* Right Column: Corporate Video / Visual Showcase */}
-          <div className="lg:col-span-6">
-            <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden border border-[#EDEFF1] shadow-md bg-[#102B46]">
+          <div className="lg:col-span-6 lg:relative">
+            <div className="relative aspect-[16/10] lg:aspect-auto lg:absolute lg:inset-0 w-full rounded-2xl overflow-hidden border border-[#EDEFF1] shadow-md bg-[#102B46]">
               {isPlayingVideo ? (
                 <iframe
                   src={CORPORATE_VIDEO_EMBED_URL}
