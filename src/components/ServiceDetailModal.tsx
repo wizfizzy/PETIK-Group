@@ -116,7 +116,7 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
           <button
             onClick={() => {
               onClose();
-              onSelectForEnquiry(service.title);
+              onSelectForEnquiry(service.enquiryService ?? service.title);
             }}
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg text-xs font-semibold uppercase tracking-wider text-white bg-[#102B46] hover:bg-[#163B59] transition-colors"
           >

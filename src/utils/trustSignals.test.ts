@@ -15,15 +15,27 @@ test('isPlaceholderValue detects empty and [PLACEHOLDER] tokens accurately', () 
 });
 
 test('buildTelHref and buildWhatsAppHref return null for placeholders and valid URLs for real numbers', () => {
-  assert.equal(buildTelHref(TRUST_SIGNALS.phoneNumber), null);
+  assert.equal(buildTelHref('[PLACEHOLDER: Insert Phone Number]'), null);
   assert.equal(buildWhatsAppHref(TRUST_SIGNALS.whatsappNumber), null);
+  assert.equal(buildTelHref(TRUST_SIGNALS.phoneNumber), 'tel:+2348111113633');
   assert.equal(buildTelHref('+234 801 234 5678'), 'tel:+2348012345678');
   assert.equal(buildWhatsAppHref('+234 801 234 5678'), 'https://wa.me/2348012345678');
 });
 
-test('TRUST_SIGNALS does not fabricate RC numbers, phone numbers, memberships, or testimonials', () => {
+test('TRUST_SIGNALS exposes official contact details and avoids fabricated RC numbers, memberships, or testimonials', () => {
+  assert.deepEqual(TRUST_SIGNALS.emails, [
+    'info@petiklimited.com',
+    'enquiry@petiklimited.com',
+  ]);
+  assert.deepEqual(TRUST_SIGNALS.phoneNumbers, [
+    '(+234) 8111113633',
+    '(+234) 8039364007',
+    '(+234) 9053172818',
+    '(+234) 9159477046',
+    '(+234) 9159477047',
+  ]);
+  assert.equal(isPlaceholderValue(TRUST_SIGNALS.phoneNumber), false);
   assert.equal(isPlaceholderValue(TRUST_SIGNALS.cacRcNumber), true);
-  assert.equal(isPlaceholderValue(TRUST_SIGNALS.phoneNumber), true);
   assert.equal(isPlaceholderValue(TRUST_SIGNALS.whatsappNumber), true);
   assert.equal(TRUST_SIGNALS.memberships.length, 0);
   assert.equal(TRUST_SIGNALS.testimonialsOrClients.length, 0);

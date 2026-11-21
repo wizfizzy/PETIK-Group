@@ -95,24 +95,26 @@ export const ArticleDetailModal: React.FC<ArticleDetailModalProps> = ({
           </div>
 
           <div className="space-y-4 text-sm sm:text-base text-slate-700 leading-relaxed">
-            {article.content.map((paragraph, idx) => (
+            {(article.content ?? []).map((paragraph, idx) => (
               <p key={idx}>{paragraph}</p>
             ))}
           </div>
 
-          <div className="p-5 rounded-xl bg-[#F8F8F5] border border-[#EDEFF1]">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[#102B46] mb-3">
-              Key Engineering & Management Takeaways
-            </h4>
-            <ul className="space-y-2">
-              {article.keyTakeaways.map((takeaway, idx) => (
-                <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700">
-                  <CheckCircle2 className="w-4 h-4 text-[#a17d2c] shrink-0 mt-0.5" />
-                  <span>{takeaway}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {(article.keyTakeaways?.length ?? 0) > 0 && (
+            <div className="p-5 rounded-xl bg-[#F8F8F5] border border-[#EDEFF1]">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-[#102B46] mb-3">
+                Key Engineering & Management Takeaways
+              </h4>
+              <ul className="space-y-2">
+                {(article.keyTakeaways ?? []).map((takeaway, idx) => (
+                  <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700">
+                    <CheckCircle2 className="w-4 h-4 text-[#a17d2c] shrink-0 mt-0.5" />
+                    <span>{takeaway}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
 
         {/* Modal Footer */}

@@ -1,5 +1,5 @@
 import React, { useState, forwardRef, useImperativeHandle } from 'react';
-import { Mail, MapPin, Phone, Send, CheckCircle2, Clock, AlertCircle, Building2 } from 'lucide-react';
+import { Mail, MapPin, Phone, Send, CheckCircle2, AlertCircle } from 'lucide-react';
 import { validateContactForm, generateEnquiryReference, ContactFormData } from '../utils/contact';
 import { TRUST_SIGNALS, buildTelHref } from '../utils/trustSignals';
 import { DirectContactButtons } from './DirectContactButtons';
@@ -103,15 +103,15 @@ export const ContactSection = forwardRef<ContactSectionHandle>((_, ref) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-stretch">
           {/* Left Column: Office & Operational Information */}
-          <div className="lg:col-span-5 space-y-8">
-            <div className="p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm space-y-6">
-              <h3 className="font-display text-xl font-bold text-white">
+          <div className="lg:col-span-5">
+            <div className="h-full p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm flex flex-col">
+              <h3 className="font-display text-xl font-bold text-white mb-6">
                 Petik Limited Corporate Office
               </h3>
 
-              <div className="space-y-5 text-sm text-slate-300">
+              <div className="flex-1 flex flex-col space-y-5 text-sm text-slate-300">
                 <div className="flex items-start gap-3.5">
                   <MapPin className="w-5 h-5 text-[#a17d2c] shrink-0 mt-0.5" />
                   <div>
@@ -138,49 +138,42 @@ export const ContactSection = forwardRef<ContactSectionHandle>((_, ref) => {
                   <Mail className="w-5 h-5 text-[#a17d2c] shrink-0 mt-0.5" />
                   <div>
                     <span className="block font-semibold text-white">Direct Client Desk</span>
-                    <a
-                      href="mailto:info@petiklimited.com"
-                      className="text-xs text-slate-300 hover:text-white transition-colors"
-                    >
-                      info@petiklimited.com
-                    </a>
+                    <div className="flex flex-col gap-1 mt-0.5">
+                      {TRUST_SIGNALS.emails.map((email) => (
+                        <a
+                          key={email}
+                          href={`mailto:${email}`}
+                          className="text-xs text-slate-300 hover:text-white transition-colors"
+                        >
+                          {email}
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3.5">
                   <Phone className="w-5 h-5 text-[#a17d2c] shrink-0 mt-0.5" />
                   <div>
-                    <span className="block font-semibold text-white">Phone &amp; WhatsApp</span>
-                    {buildTelHref(TRUST_SIGNALS.phoneNumber) ? (
-                      <a
-                        href={buildTelHref(TRUST_SIGNALS.phoneNumber)!}
-                        className="text-xs text-slate-300 hover:text-white transition-colors"
-                      >
-                        {TRUST_SIGNALS.phoneNumber}
-                      </a>
-                    ) : (
-                      <p className="text-xs text-slate-300">{TRUST_SIGNALS.phoneNumber}</p>
-                    )}
+                    <span className="block font-semibold text-white">Phone</span>
+                    <div className="flex flex-wrap gap-x-3 gap-y-1 mt-0.5">
+                      {TRUST_SIGNALS.phoneNumbers.map((phone) => {
+                        const href = buildTelHref(phone);
+                        return (
+                          <a
+                            key={phone}
+                            href={href ?? undefined}
+                            className="text-xs text-slate-300 hover:text-white transition-colors whitespace-nowrap"
+                          >
+                            {phone}
+                          </a>
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3.5">
-                  <Building2 className="w-5 h-5 text-[#a17d2c] shrink-0 mt-0.5" />
-                  <div>
-                    <span className="block font-semibold text-white">CAC Registration</span>
-                    <p className="text-xs text-slate-300">{TRUST_SIGNALS.cacRcNumber}</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3.5">
-                  <Clock className="w-5 h-5 text-[#a17d2c] shrink-0 mt-0.5" />
-                  <div>
-                    <span className="block font-semibold text-white">Business Hours</span>
-                    <p className="text-xs text-slate-300">Monday – Friday: 8:00 AM – 5:00 PM (WAT)</p>
-                  </div>
-                </div>
-
-                <div className="pt-2 border-t border-white/10">
+                <div className="pt-4 mt-auto border-t border-white/10">
                   <DirectContactButtons />
                 </div>
               </div>
@@ -189,7 +182,7 @@ export const ContactSection = forwardRef<ContactSectionHandle>((_, ref) => {
 
           {/* Right Column: Interactive Consultation & Enquiry Form */}
           <div className="lg:col-span-7">
-            <div className="bg-white rounded-2xl p-6 sm:p-10 text-slate-900 shadow-2xl">
+            <div className="h-full bg-white rounded-2xl p-6 sm:p-10 text-slate-900 shadow-2xl flex flex-col justify-center">
               {submissionSuccess ? (
                 <div className="py-8 text-center space-y-6">
                   <div className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 mx-auto flex items-center justify-center">

@@ -4,7 +4,6 @@ import { Hero } from './components/Hero';
 import { CompanyIntro } from './components/CompanyIntro';
 import { OurTeam } from './components/OurTeam';
 import { BusinessCapabilities } from './components/BusinessCapabilities';
-import { FeaturedProjects } from './components/FeaturedProjects';
 import { ProjectsPage } from './components/ProjectsPage';
 import { WhyPetik } from './components/WhyPetik';
 import { FeaturedProperty } from './components/FeaturedProperty';
@@ -12,9 +11,8 @@ import { InsightsNews } from './components/InsightsNews';
 import { ContactSection, ContactSectionHandle } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { FooterInfoModal, FooterInfoTab } from './components/FooterInfoModal';
-import { ServiceDetailModal } from './components/ServiceDetailModal';
 import { InsightsBlogPage } from './components/InsightsBlogPage';
-import { ServiceItem, ProjectItem } from './data/companyData';
+import { ProjectItem } from './data/companyData';
 import {
   getRoutePath,
   getRouteSeoMeta,
@@ -76,7 +74,6 @@ export default function App({ initialPath }: AppProps) {
 
   const contactSectionRef = useRef<ContactSectionHandle>(null);
   const [activeView, setActiveView] = useState<ActivePageView>(initialRoute.view);
-  const [activeServiceModal, setActiveServiceModal] = useState<ServiceItem | null>(null);
   const [activeFooterInfoTab, setActiveFooterInfoTab] = useState<FooterInfoTab | null>(null);
   const [selectedInsightId, setSelectedInsightId] = useState<string | null>(null);
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(
@@ -161,17 +158,6 @@ export default function App({ initialPath }: AppProps) {
     syncBrowserRoute('projects', projectId);
   };
 
-  const handleOpenProjectsPage = (projectId: string | null = null) => {
-    setSelectedProjectId(projectId);
-    setActiveView('projects');
-    syncBrowserRoute('projects', projectId);
-    if (typeof window !== 'undefined') {
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }, 40);
-    }
-  };
-
   const handleDiscussSimilarProject = (project: ProjectItem) => {
     handleOpenEnquiry(project.enquiryService);
   };
@@ -200,7 +186,6 @@ export default function App({ initialPath }: AppProps) {
       <Navbar
         activeView={activeView}
         onNavigateHomeSection={scrollToSection}
-        onOpenProjectsPage={() => handleOpenProjectsPage(null)}
         onOpenInsightsBlog={() => handleOpenInsightsBlog(null)}
         onOpenEnquiry={() => handleOpenEnquiry()}
       />
@@ -234,18 +219,9 @@ export default function App({ initialPath }: AppProps) {
             <OurTeam />
 
             {/* SECTION 4: BUSINESS CAPABILITIES */}
-            <BusinessCapabilities
-              onOpenService={(service) => setActiveServiceModal(service)}
-            />
+            <BusinessCapabilities />
 
-            {/* SECTION 5: FEATURED PROJECTS / PORTFOLIO */}
-            <FeaturedProjects
-              onDiscussProject={() => handleOpenEnquiry()}
-              onOpenProjectsPage={() => handleOpenProjectsPage(null)}
-              onReadCaseStudy={(projectId) => handleOpenProjectsPage(projectId)}
-            />
-
-            {/* SECTION 6: WHY PETIK */}
+            {/* SECTION 5: WHY PETIK */}
             <WhyPetik />
 
             {/* SECTION 7: FEATURED PROPERTY / SHORTLET */}
@@ -266,17 +242,9 @@ export default function App({ initialPath }: AppProps) {
       {/* SECTION 10: FOOTER */}
       <Footer
         onNavigateHomeSection={scrollToSection}
-        onOpenProjectsPage={() => handleOpenProjectsPage(null)}
         onOpenInfoTab={(tab) => setActiveFooterInfoTab(tab)}
         onOpenInsightArticle={(articleId) => handleOpenInsightsBlog(articleId)}
         onOpenEnquiry={(sector) => handleOpenEnquiry(sector)}
-      />
-
-      {/* Shared Service Detail Modal */}
-      <ServiceDetailModal
-        service={activeServiceModal}
-        onClose={() => setActiveServiceModal(null)}
-        onSelectForEnquiry={(serviceTitle) => handleOpenEnquiry(serviceTitle)}
       />
 
       {/* Footer Information Modal (FAQ, Privacy Policy, Terms of Service) */}

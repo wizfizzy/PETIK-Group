@@ -143,7 +143,7 @@ export function generatePetikChatReply(rawMessage: string): ChatReply {
     msg.includes('contact')
   ) {
     return {
-      text: 'Our Lagos HQ is at 2nd Floor, Lagos State Court of Arbitration, 1A Remi Olowude Street, Lekki Phase I, Lagos, with regional operations in Port Harcourt and Osogbo. Desk hours are Monday–Friday, 8:00 AM–5:00 PM (WAT), or email info@petiklimited.com.',
+      text: 'Our Lagos HQ is at 2nd Floor, Lagos State Court of Arbitration, 1A Remi Olowude Street, Lekki Phase I, Lagos, with regional operations in Port Harcourt and Osogbo. Reach our client desk at info@petiklimited.com, enquiry@petiklimited.com, or (+234) 8111113633.',
       actionLabel: 'Open Contact Consultation Form',
     };
   }

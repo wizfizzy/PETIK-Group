@@ -1,24 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ArrowRight, Clock, Calendar } from 'lucide-react';
-import { INSIGHTS_DATA, InsightArticle } from '../data/companyData';
-import { ArticleDetailModal } from './ArticleDetailModal';
+import { INSIGHTS_DATA } from '../data/companyData';
+import { getHomepageInsights, PETIK_BLOG_URL } from '../utils/insights';
 
 interface InsightsNewsProps {
-  onEnquire: () => void;
-  onOpenBlogPage: () => void;
+  onEnquire?: () => void;
+  onOpenBlogPage?: () => void;
 }
 
-export const InsightsNews: React.FC<InsightsNewsProps> = ({ onEnquire, onOpenBlogPage }) => {
-  const [selectedArticle, setSelectedArticle] = useState<InsightArticle | null>(null);
-  const [filterCategory, setFilterCategory] = useState<string>('All');
-
-  const categories = ['All', 'Construction Standards', 'Engineering Best Practices', 'Urban Infrastructure'];
-
-  const filteredArticles = (
-    filterCategory === 'All'
-      ? INSIGHTS_DATA
-      : INSIGHTS_DATA.filter((a) => a.category === filterCategory)
-  ).slice(0, 3);
+export const InsightsNews: React.FC<InsightsNewsProps> = () => {
+  const recentArticles = getHomepageInsights(INSIGHTS_DATA, 3);
 
   return (
     <section id="insights" className="py-24 sm:py-28 bg-[#EDEFF1]/30 border-b border-[#EDEFF1]">
@@ -40,10 +31,10 @@ export const InsightsNews: React.FC<InsightsNewsProps> = ({ onEnquire, onOpenBlo
 
         {/* 3-Column Editorial Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {filteredArticles.map((article) => (
+          {recentArticles.map((article) => (
             <article
               key={article.id}
-              className="group bg-white rounded-2xl overflow-hidden border border-[#EDEFF1] shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between"
+              className="relative group bg-white rounded-2xl overflow-hidden border border-[#EDEFF1] shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between"
             >
               <div>
                 {/* Visual */}
@@ -88,16 +79,17 @@ export const InsightsNews: React.FC<InsightsNewsProps> = ({ onEnquire, onOpenBlo
 
               {/* Read Action */}
               <div className="px-6 pb-6 pt-2 border-t border-slate-100 flex items-center justify-between">
-                <button
-                  type="button"
-                  onClick={() => setSelectedArticle(article)}
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#102B46] group-hover:text-[#a17d2c] transition-colors"
+                <a
+                  href={article.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#102B46] group-hover:text-[#a17d2c] transition-colors after:content-[''] after:absolute after:inset-0"
                 >
                   <span>
                     Read Article<span className="sr-only">: {article.title}</span>
                   </span>
                   <ArrowRight className="w-3.5 h-3.5 text-[#a17d2c] transition-transform group-hover:translate-x-1" />
-                </button>
+                </a>
 
                 <span className="text-[11px] text-slate-400">
                   Petik Insights
@@ -110,25 +102,16 @@ export const InsightsNews: React.FC<InsightsNewsProps> = ({ onEnquire, onOpenBlo
         {/* View All Insights CTA */}
         <div className="flex items-center justify-center">
           <a
-            href="/insights"
-            onClick={(e) => {
-              e.preventDefault();
-              onOpenBlogPage();
-            }}
+            href={PETIK_BLOG_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-xs font-semibold uppercase tracking-wider text-[#102B46] bg-white border border-slate-300 hover:border-[#102B46] hover:bg-slate-50 transition-colors shadow-sm"
           >
-            <span>Browse All Technical Insights &amp; Archives</span>
+            <span>View All Insights</span>
             <ArrowRight className="w-3.5 h-3.5 text-[#a17d2c]" />
           </a>
         </div>
       </div>
-
-      {/* Article Detail Reader Modal */}
-      <ArticleDetailModal
-        article={selectedArticle}
-        onClose={() => setSelectedArticle(null)}
-        onEnquire={onEnquire}
-      />
     </section>
   );
 };

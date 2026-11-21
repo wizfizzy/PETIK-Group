@@ -15,7 +15,9 @@ export interface ClientEndorsement {
 
 export interface TrustSignalsConfig {
   cacRcNumber: string;
+  emails: string[];
   phoneNumber: string;
+  phoneNumbers: string[];
   whatsappNumber: string;
   memberships: string[];
   sameAs: string[];
@@ -25,7 +27,15 @@ export interface TrustSignalsConfig {
 
 export const TRUST_SIGNALS: TrustSignalsConfig = {
   cacRcNumber: '[PLACEHOLDER: Insert CAC RC Number]',
-  phoneNumber: '[PLACEHOLDER: Insert Phone Number]',
+  emails: ['info@petiklimited.com', 'enquiry@petiklimited.com'],
+  phoneNumber: '(+234) 8111113633',
+  phoneNumbers: [
+    '(+234) 8111113633',
+    '(+234) 8039364007',
+    '(+234) 9053172818',
+    '(+234) 9159477046',
+    '(+234) 9159477047',
+  ],
   whatsappNumber: '[PLACEHOLDER: Insert WhatsApp Number]',
   memberships: [],
   sameAs: ['[PLACEHOLDER: Insert Official LinkedIn or Social URL]'],

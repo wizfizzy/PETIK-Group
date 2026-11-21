@@ -2,13 +2,11 @@ import React from 'react';
 import { MapPin, Mail, Phone } from 'lucide-react';
 import { FooterInfoTab } from './FooterInfoModal';
 import { ChatWidget } from './ChatWidget';
-import { DirectContactButtons } from './DirectContactButtons';
 import { INSIGHTS_DATA } from '../data/companyData';
 import { TRUST_SIGNALS, buildTelHref } from '../utils/trustSignals';
 
 interface FooterProps {
   onNavigateHomeSection: (sectionId: string) => void;
-  onOpenProjectsPage: () => void;
   onOpenInfoTab: (tab: FooterInfoTab) => void;
   onOpenInsightArticle: (articleId: string) => void;
   onOpenEnquiry: (prefilledSector?: string) => void;
@@ -16,13 +14,10 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({
   onNavigateHomeSection,
-  onOpenProjectsPage,
   onOpenInfoTab,
   onOpenInsightArticle,
   onOpenEnquiry,
 }) => {
-  const telHref = buildTelHref(TRUST_SIGNALS.phoneNumber);
-
   return (
     <footer className="bg-[#102B46] text-white border-t border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
@@ -41,10 +36,6 @@ export const Footer: React.FC<FooterProps> = ({
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-sm">
               An indigenous Nigerian company operating across real estate development, civil construction and project management, facility management, solar energy, downstream fuel logistics, and Amarisa Court shortlets.
             </p>
-
-            <div className="pt-2 text-xs text-slate-400">
-              <span className="font-semibold text-slate-200">CAC RC Number:</span> {TRUST_SIGNALS.cacRcNumber}
-            </div>
           </div>
 
           {/* Navigation Links */}
@@ -71,18 +62,6 @@ export const Footer: React.FC<FooterProps> = ({
                   </a>
                 </li>
               ))}
-              <li>
-                <a
-                  href="/projects"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onOpenProjectsPage();
-                  }}
-                  className="hover:text-white transition-colors inline-block"
-                >
-                  Projects
-                </a>
-              </li>
               {(
                 [
                   { label: 'FAQ', tab: 'faq' },
@@ -141,31 +120,35 @@ export const Footer: React.FC<FooterProps> = ({
 
               <div className="flex items-start gap-2.5">
                 <Mail className="w-4 h-4 text-[#a17d2c] shrink-0 mt-0.5" />
-                <a
-                  href="mailto:info@petiklimited.com"
-                  className="hover:text-white transition-colors"
-                >
-                  info@petiklimited.com
-                </a>
+                <div className="flex flex-col gap-1">
+                  {TRUST_SIGNALS.emails.map((email) => (
+                    <a
+                      key={email}
+                      href={`mailto:${email}`}
+                      className="hover:text-white transition-colors"
+                    >
+                      {email}
+                    </a>
+                  ))}
+                </div>
               </div>
 
               <div className="flex items-start gap-2.5">
                 <Phone className="w-4 h-4 text-[#a17d2c] shrink-0 mt-0.5" />
-                {telHref ? (
-                  <a href={telHref} className="hover:text-white transition-colors">
-                    {TRUST_SIGNALS.phoneNumber}
-                  </a>
-                ) : (
-                  <span className="text-xs text-slate-400">{TRUST_SIGNALS.phoneNumber}</span>
-                )}
-              </div>
-
-              <div className="pt-1">
-                <DirectContactButtons compact />
-              </div>
-
-              <div className="pt-1 text-xs text-slate-400">
-                <span>Regional Footprint: Port Harcourt · Osogbo</span>
+                <div className="flex flex-col gap-1">
+                  {TRUST_SIGNALS.phoneNumbers.map((phone) => {
+                    const href = buildTelHref(phone);
+                    return (
+                      <a
+                        key={phone}
+                        href={href ?? undefined}
+                        className="hover:text-white transition-colors whitespace-nowrap"
+                      >
+                        {phone}
+                      </a>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </div>

@@ -4,9 +4,14 @@ import { PROJECTS_DATA, ProjectItem } from '../data/companyData';
 
 interface FeaturedProjectsProps {
   onDiscussProject: () => void;
+  onOpenProjectsPage?: () => void;
+  onReadCaseStudy?: (projectId: string) => void;
 }
 
-export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ onDiscussProject }) => {
+export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({
+  onDiscussProject,
+  onReadCaseStudy,
+}) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
 
@@ -15,7 +20,7 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ onDiscussPro
   const filteredProjects =
     selectedCategory === 'All'
       ? PROJECTS_DATA
-      : PROJECTS_DATA.filter((p) => p.category === selectedCategory);
+      : PROJECTS_DATA.filter((p) => p.sector === selectedCategory);
 
   return (
     <section id="projects" className="py-24 sm:py-28 bg-[#F8F8F5] border-b border-[#EDEFF1]">
@@ -77,7 +82,7 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ onDiscussPro
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent md:hidden" />
                 <div className="absolute top-4 left-4">
                   <span className="inline-block px-3 py-1 rounded-md bg-[#102B46]/90 backdrop-blur-sm text-[11px] font-semibold uppercase tracking-wider text-white">
-                    {project.category}
+                    {project.sector}
                   </span>
                 </div>
               </div>
@@ -95,14 +100,14 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ onDiscussPro
                   </h3>
 
                   <p className="text-sm text-slate-600 leading-relaxed mb-6">
-                    {project.shortDescription}
+                    {project.scope}
                   </p>
 
                   <div className="space-y-1.5 mb-6">
-                    {project.highlights.map((h, i) => (
+                    {[project.role, project.yearAndStatus].map((item, i) => (
                       <div key={i} className="flex items-center gap-2 text-xs text-slate-700">
                         <Check className="w-3.5 h-3.5 text-[#a17d2c] shrink-0" />
-                        <span>{h}</span>
+                        <span>{item}</span>
                       </div>
                     ))}
                   </div>
@@ -111,7 +116,11 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ onDiscussPro
                 <div className="pt-4 border-t border-slate-100 flex items-center">
                   <button
                     type="button"
-                    onClick={() => setSelectedProject(project)}
+                    onClick={() =>
+                      onReadCaseStudy
+                        ? onReadCaseStudy(project.id)
+                        : setSelectedProject(project)
+                    }
                     className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#102B46] hover:text-[#a17d2c] transition-colors"
                   >
                     <span>View Project Scope</span>
@@ -159,7 +168,7 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ onDiscussPro
             <div className="flex items-center justify-between gap-4 mb-4">
               <div>
                 <span className="text-xs font-semibold text-[#a17d2c] uppercase tracking-wider">
-                  {selectedProject.category} · {selectedProject.location}
+                  {selectedProject.sector} · {selectedProject.location}
                 </span>
                 <h3 className="font-display text-xl sm:text-2xl font-bold text-[#102B46]">
                   {selectedProject.name}
@@ -175,7 +184,7 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ onDiscussPro
             </div>
 
             <p className="text-sm text-slate-700 leading-relaxed mb-6">
-              {selectedProject.fullDescription}
+              {selectedProject.caseStudy.brief}
             </p>
 
             <div className="p-4 rounded-xl bg-slate-50 border border-slate-100 mb-6">
@@ -183,7 +192,11 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ onDiscussPro
                 Project Highlights & Specifications
               </span>
               <ul className="space-y-2">
-                {selectedProject.highlights.map((item, idx) => (
+                {[
+                  selectedProject.role,
+                  selectedProject.yearAndStatus,
+                  selectedProject.verifiedOutcome,
+                ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-2 text-xs sm:text-sm text-slate-700">
                     <Check className="w-4 h-4 text-[#a17d2c] shrink-0" />
                     <span>{item}</span>

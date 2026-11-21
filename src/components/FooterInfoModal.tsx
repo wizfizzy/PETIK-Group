@@ -39,7 +39,7 @@ const FAQ_ITEMS: FaqItem[] = [
   {
     question: 'How do I initiate a project feasibility review or service consultation?',
     answer:
-      'Select your sector of interest in the Contact Us consultation form or email info@petiklimited.com with your site location, approximate scope, and preferred timeline. All preliminary project submissions are treated confidentially.',
+      'Select your sector of interest in the Contact Us consultation form or email info@petiklimited.com or enquiry@petiklimited.com with your site location, approximate scope, and preferred timeline. All preliminary project submissions are treated confidentially.',
   },
 ];
 

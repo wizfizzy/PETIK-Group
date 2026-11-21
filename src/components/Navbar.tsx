@@ -6,17 +6,15 @@ export type ActivePageView = 'home' | 'projects' | 'insights';
 interface NavbarProps {
   activeView: ActivePageView;
   onNavigateHomeSection: (sectionId: string) => void;
-  onOpenProjectsPage: () => void;
   onOpenInsightsBlog: () => void;
   onOpenEnquiry: () => void;
 }
 
-type DropdownKey = 'services' | 'shortlets' | 'about';
+type DropdownKey = 'services' | 'shortlets';
 
 export const Navbar: React.FC<NavbarProps> = ({
   activeView,
   onNavigateHomeSection,
-  onOpenProjectsPage,
   onOpenInsightsBlog,
   onOpenEnquiry,
 }) => {
@@ -65,12 +63,6 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const shortletItems = [
     { id: 'properties', label: 'Amarisa Court' },
-  ];
-
-  const aboutItems = [
-    { id: 'leadership', sectionId: 'team', label: 'Our Team' },
-    { id: 'gallery', sectionId: 'projects', label: 'Gallery' },
-    { id: 'foundation', sectionId: 'about', label: 'Petik Development Foundation' },
   ];
 
   const closeAllMenus = () => {
@@ -248,71 +240,20 @@ export const Navbar: React.FC<NavbarProps> = ({
               )}
             </div>
 
-            {/* 4. About Us Dropdown */}
-            <div
-              className="relative"
-              onMouseEnter={() => handleDesktopMouseEnter('about')}
-              onMouseLeave={handleDesktopMouseLeave}
-            >
-              <button
-                type="button"
-                onClick={() => toggleDesktopDropdown('about')}
-                aria-expanded={openDropdown === 'about'}
-                aria-haspopup="true"
-                className="inline-flex items-center gap-1.5 py-1.5 hover:text-white transition-colors whitespace-nowrap shrink-0"
-              >
-                <span>About Us</span>
-                <ChevronDown
-                  className={`w-3.5 h-3.5 text-[#a17d2c] transition-transform duration-200 ${
-                    openDropdown === 'about' ? 'rotate-180' : ''
-                  }`}
-                />
-              </button>
-
-              {openDropdown === 'about' && (
-                <div
-                  role="menu"
-                  aria-label="About Us submenu"
-                  className="absolute left-0 top-full pt-2 w-64 z-50"
-                >
-                  <div className="bg-white rounded-xl shadow-2xl border border-[#EDEFF1] p-2 text-[#102B46]">
-                    {aboutItems.map((item) => (
-                      <button
-                        key={item.id}
-                        type="button"
-                        role="menuitem"
-                        onClick={() => {
-                          closeAllMenus();
-                          onNavigateHomeSection(item.sectionId);
-                        }}
-                        className="w-full text-left px-3.5 py-2.5 rounded-lg text-xs sm:text-sm font-medium text-[#102B46] hover:bg-[#F8F8F5] hover:text-[#a17d2c] transition-colors"
-                      >
-                        {item.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* 5. Projects Page */}
+            {/* 4. About Us */}
             <a
-              href="/projects"
+              href="/#about"
               onClick={(e) => {
                 e.preventDefault();
                 closeAllMenus();
-                onOpenProjectsPage();
+                onNavigateHomeSection('about');
               }}
-              className={`py-1.5 transition-colors whitespace-nowrap shrink-0 border-b-2 ${
-                activeView === 'projects'
-                  ? 'text-white border-[#a17d2c]'
-                  : 'text-slate-200 border-transparent hover:text-white'
-              }`}
+              className="hover:text-white transition-colors py-1.5 whitespace-nowrap shrink-0"
             >
-              Projects
+              About Us
             </a>
 
-            {/* 6. Contact Us */}
+            {/* 5. Contact Us */}
             <a
               href="/#contact"
               onClick={(e) => {
@@ -469,54 +410,20 @@ export const Navbar: React.FC<NavbarProps> = ({
             )}
           </div>
 
-          {/* 4. About Us Accordion */}
-          <div>
-            <button
-              type="button"
-              onClick={() => toggleMobileAccordion('about')}
-              aria-expanded={mobileExpanded === 'about'}
-              className="w-full flex items-center justify-between px-3 py-3 rounded-md text-base font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-colors"
-            >
-              <span>About Us</span>
-              <ChevronDown
-                className={`w-4 h-4 text-[#a17d2c] transition-transform ${
-                  mobileExpanded === 'about' ? 'rotate-180' : ''
-                }`}
-              />
-            </button>
-            {mobileExpanded === 'about' && (
-              <div className="pl-4 pr-2 py-1 space-y-1">
-                {aboutItems.map((item) => (
-                  <button
-                    key={item.id}
-                    type="button"
-                    onClick={() => {
-                      closeAllMenus();
-                      onNavigateHomeSection(item.sectionId);
-                    }}
-                    className="w-full text-left px-3 py-2.5 rounded-md text-sm text-slate-300 hover:text-white hover:bg-white/5 transition-colors"
-                  >
-                    {item.label}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {/* 5. Projects Page */}
+          {/* 4. About Us */}
           <a
-            href="/projects"
+            href="/#about"
             onClick={(e) => {
               e.preventDefault();
               closeAllMenus();
-              onOpenProjectsPage();
+              onNavigateHomeSection('about');
             }}
-            className="block w-full text-left px-3 py-3 rounded-md text-base font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-colors"
+            className="block px-3 py-3 rounded-md text-base font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-colors"
           >
-            Projects
+            About Us
           </a>
 
-          {/* 6. Contact Us */}
+          {/* 5. Contact Us */}
           <a
             href="/#contact"
             onClick={(e) => {

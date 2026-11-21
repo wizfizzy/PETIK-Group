@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ArrowRight, Calendar, CheckCircle2, ChevronUp, Clock, Search } from 'lucide-react';
+import { ArrowRight, Calendar, CheckCircle2, Clock, Search } from 'lucide-react';
 import { INSIGHTS_DATA } from '../data/companyData';
 
 interface InsightsBlogPageProps {
@@ -35,12 +35,7 @@ export const InsightsBlogPage: React.FC<InsightsBlogPageProps> = ({
     }
   }, [focusedArticleId]);
 
-  const categories = [
-    'All',
-    'Construction Standards',
-    'Engineering Best Practices',
-    'Urban Infrastructure',
-  ];
+  const categories = ['All', ...Array.from(new Set(INSIGHTS_DATA.map((a) => a.category)))];
 
   const filteredArticles = INSIGHTS_DATA.filter((article) => {
     const matchesCategory =
@@ -63,14 +58,6 @@ export const InsightsBlogPage: React.FC<InsightsBlogPageProps> = ({
 
   const isFeaturedExpanded =
     Boolean(featuredArticle && expandedArticleId === featuredArticle.id);
-
-  const handleOpenInlineArticle = (articleId: string) => {
-    setExpandedArticleId(articleId);
-    const readerEl = document.getElementById('featured-insight-reader');
-    if (readerEl) {
-      readerEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
 
   return (
     <div className="bg-[#F8F8F5] min-h-screen">
@@ -189,57 +176,50 @@ export const InsightsBlogPage: React.FC<InsightsBlogPageProps> = ({
                       </div>
 
                       <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-4">
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setExpandedArticleId(
-                              isFeaturedExpanded ? null : featuredArticle.id
-                            )
-                          }
+                        <a
+                          href={featuredArticle.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-xs font-semibold uppercase tracking-wider text-white bg-[#102B46] hover:bg-[#163B59] transition-colors"
                         >
-                          <span>
-                            {isFeaturedExpanded ? 'Collapse Article' : 'Read Full Article'}
-                          </span>
-                          {isFeaturedExpanded ? (
-                            <ChevronUp className="w-3.5 h-3.5 text-[#a17d2c]" />
-                          ) : (
-                            <ArrowRight className="w-3.5 h-3.5 text-[#a17d2c]" />
-                          )}
-                        </button>
+                          <span>Read Full Article</span>
+                          <ArrowRight className="w-3.5 h-3.5 text-[#a17d2c]" />
+                        </a>
 
                         <span className="text-xs text-slate-400 font-medium">
-                          {isFeaturedExpanded ? 'Full Editorial View' : 'Featured Editorial'}
+                          Petik Limited Blog
                         </span>
                       </div>
                     </div>
                   </div>
 
-                  {/* Expanded Inline Article Body (No Popup) */}
-                  {isFeaturedExpanded && (
+                  {/* Expanded Inline Article Body (only rendered if full content is available) */}
+                  {isFeaturedExpanded && (featuredArticle.content?.length ?? 0) > 0 && (
                     <div className="border-t border-[#EDEFF1] px-8 sm:px-10 py-8 sm:py-10 bg-white space-y-6">
                       <div className="max-w-4xl space-y-4 text-sm sm:text-base text-slate-700 leading-relaxed">
-                        {featuredArticle.content.map((paragraph, idx) => (
+                        {(featuredArticle.content ?? []).map((paragraph, idx) => (
                           <p key={idx}>{paragraph}</p>
                         ))}
                       </div>
 
-                      <div className="max-w-4xl p-6 rounded-xl bg-[#F8F8F5] border border-[#EDEFF1]">
-                        <h3 className="text-xs font-bold uppercase tracking-wider text-[#102B46] mb-3">
-                          Key Engineering &amp; Management Takeaways
-                        </h3>
-                        <ul className="space-y-2.5">
-                          {featuredArticle.keyTakeaways.map((takeaway, idx) => (
-                            <li
-                              key={idx}
-                              className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700"
-                            >
-                              <CheckCircle2 className="w-4 h-4 text-[#a17d2c] shrink-0 mt-0.5" />
-                              <span>{takeaway}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+                      {(featuredArticle.keyTakeaways?.length ?? 0) > 0 && (
+                        <div className="max-w-4xl p-6 rounded-xl bg-[#F8F8F5] border border-[#EDEFF1]">
+                          <h3 className="text-xs font-bold uppercase tracking-wider text-[#102B46] mb-3">
+                            Key Engineering &amp; Management Takeaways
+                          </h3>
+                          <ul className="space-y-2.5">
+                            {(featuredArticle.keyTakeaways ?? []).map((takeaway, idx) => (
+                              <li
+                                key={idx}
+                                className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700"
+                              >
+                                <CheckCircle2 className="w-4 h-4 text-[#a17d2c] shrink-0 mt-0.5" />
+                                <span>{takeaway}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
 
                       <div className="pt-2 flex flex-wrap items-center justify-between gap-4 max-w-4xl">
                         <button
@@ -315,16 +295,15 @@ export const InsightsBlogPage: React.FC<InsightsBlogPageProps> = ({
                     </div>
 
                     <div className="px-6 pb-6 pt-2 border-t border-slate-100 flex items-center justify-between">
-                      <button
-                        type="button"
-                        onClick={() => handleOpenInlineArticle(article.id)}
+                      <a
+                        href={article.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#102B46] group-hover:text-[#a17d2c] transition-colors"
                       >
-                        <span>
-                          {expandedArticleId === article.id ? 'Reading Above' : 'Read Article'}
-                        </span>
+                        <span>Read Article</span>
                         <ArrowRight className="w-3.5 h-3.5 text-[#a17d2c] transition-transform group-hover:translate-x-1" />
-                      </button>
+                      </a>
 
                       <span className="text-[11px] text-slate-400">Petik Insights</span>
                     </div>

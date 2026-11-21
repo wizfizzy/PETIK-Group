@@ -58,14 +58,15 @@ test('parseRoutePath and getRoutePath map all views and case study routes cleanl
   assert.equal(getRoutePath('insights'), '/insights');
 });
 
-test('buildOrganizationJsonLd outputs complete Organization schema without fabricated phone or social links', () => {
+test('buildOrganizationJsonLd outputs complete Organization schema with official phone and email', () => {
   const schema = buildOrganizationJsonLd();
   assert.equal(schema['@type'], 'Organization');
   assert.equal(schema.name, 'Petik Limited');
   assert.equal(schema.url, `${DEFAULT_SITE_URL}/`);
   assert.equal(schema.logo, `${DEFAULT_SITE_URL}/petik-logo.png`);
   assert.equal(schema.address['@type'], 'PostalAddress');
-  assert.ok(schema.telephone.includes('[PLACEHOLDER'));
+  assert.equal(schema.email, 'info@petiklimited.com');
+  assert.equal(schema.telephone, '(+234) 8111113633');
   assert.ok(Array.isArray(schema.sameAs) && schema.sameAs.length > 0);
 });
 

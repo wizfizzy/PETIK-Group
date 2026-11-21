@@ -1,107 +1,76 @@
-import React from 'react';
-import { User } from 'lucide-react';
-import { TRUST_SIGNALS } from '../utils/trustSignals';
+import React, { useState } from 'react';
+import { Play } from 'lucide-react';
+
+const CORPORATE_VIDEO_THUMBNAIL =
+  'https://petiklimited.com/wp-content/uploads/2026/07/Petik33.jpeg';
+const CORPORATE_VIDEO_EMBED_URL =
+  'https://www.youtube.com/embed/wplZ503yHUA?si=CYXvrI3TJX1eoE03&autoplay=1&rel=0';
 
 export const OurTeam: React.FC = () => {
+  const [isPlayingVideo, setIsPlayingVideo] = useState(false);
+
   return (
-    <section id="team" className="py-24 sm:py-28 bg-white border-b border-[#EDEFF1]">
+    <section id="team" className="pt-8 sm:pt-10 pb-20 sm:pb-24 bg-white border-b border-[#EDEFF1] scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="max-w-2xl mb-14">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#a17d2c] block mb-3">
-            OUR TEAM
-          </span>
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-[#102B46] tracking-tight leading-tight mb-4 [text-wrap:balance]">
-            Leadership &amp; Management.
-          </h2>
-          <p className="text-base text-slate-600 leading-relaxed">
-            Petik Limited leadership profiles. Unsupplied titles, short biographies, and team portraits are marked with [PLACEHOLDER].
-          </p>
-        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          {/* Left Column: Narrative Copy */}
+          <div className="lg:col-span-6">
+            <h2 className="font-display text-xl sm:text-2xl font-bold text-[#102B46] tracking-tight leading-snug uppercase [text-wrap:balance]">
+              Bring us your challenges, we&rsquo;ll reimagine your future.
+            </h2>
 
-        {/* Leadership Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {TRUST_SIGNALS.leadership.map((member) => (
-            <article
-              key={member.id}
-              className="rounded-2xl overflow-hidden border border-[#EDEFF1] bg-[#F8F8F5] shadow-sm flex flex-col"
-            >
-              {/* Photo Slot */}
-              <div className="aspect-[4/3] bg-[#102B46]/5 border-b border-[#EDEFF1] flex flex-col items-center justify-center p-6 text-center">
-                {member.photo ? (
-                  <img
-                    src={member.photo}
-                    alt={member.photoAlt}
-                    className="w-full h-full object-cover"
-                    referrerPolicy="no-referrer"
-                  />
-                ) : (
-                  <div className="flex flex-col items-center gap-2 text-slate-500">
-                    <div className="w-16 h-16 rounded-full bg-white border border-[#EDEFF1] flex items-center justify-center">
-                      <User className="w-7 h-7 text-[#102B46]/50" aria-hidden="true" />
-                    </div>
-                    <span className="text-xs font-medium text-slate-500">
-                      [PLACEHOLDER: Insert Portrait Photo]
-                    </span>
-                  </div>
-                )}
-              </div>
+            <div className="w-14 h-0.5 bg-[#a17d2c] my-5" aria-hidden="true" />
 
-              {/* Member Details */}
-              <div className="p-6 sm:p-7 space-y-2 flex-1 flex flex-col">
-                <h3 className="font-display text-lg sm:text-xl font-bold text-[#102B46]">
-                  {member.name}
-                </h3>
-                <p className="text-xs font-semibold uppercase tracking-wider text-[#a17d2c]">
-                  {member.title}
-                </p>
-                <p className="text-sm text-slate-600 leading-relaxed pt-2">
-                  {member.bio}
-                </p>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        {/* Optional Memberships / Endorsements — rendered ONLY when real items exist */}
-        {TRUST_SIGNALS.memberships.length > 0 && (
-          <div className="mt-14 pt-10 border-t border-[#EDEFF1]">
-            <h3 className="text-xs font-bold uppercase tracking-widest text-[#a17d2c] mb-4">
-              Professional Memberships &amp; Accreditations
-            </h3>
-            <ul className="flex flex-wrap gap-3">
-              {TRUST_SIGNALS.memberships.map((item) => (
-                <li
-                  key={item}
-                  className="px-3.5 py-2 rounded-lg bg-[#F8F8F5] border border-[#EDEFF1] text-xs font-medium text-[#102B46]"
-                >
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {TRUST_SIGNALS.testimonialsOrClients.length > 0 && (
-          <div className="mt-12 pt-10 border-t border-[#EDEFF1]">
-            <h3 className="text-xs font-bold uppercase tracking-widest text-[#a17d2c] mb-4">
-              Permitted Client References
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {TRUST_SIGNALS.testimonialsOrClients.map((entry, idx) => (
-                <blockquote
-                  key={idx}
-                  className="p-6 rounded-xl bg-[#F8F8F5] border border-[#EDEFF1] text-sm text-slate-700"
-                >
-                  {entry.quote && <p className="mb-2">&ldquo;{entry.quote}&rdquo;</p>}
-                  <footer className="text-xs font-semibold text-[#102B46]">
-                    {entry.author ? `${entry.author} · ${entry.organization}` : entry.organization}
-                  </footer>
-                </blockquote>
-              ))}
+            <div className="space-y-4 text-sm sm:text-base text-slate-600 leading-relaxed">
+              <p>
+                PETIK is creating a new model for a new age, we&rsquo;re an indigenous firm. We combine creative capabilities with deep industry knowledge and experience across four major industries: Construction, Real Estate, Renewable Energy, and Oil &amp; Gas.
+              </p>
+              <p>
+                That means clients can bring us their biggest challenges, knowing we have what it takes to exceed their expectations.
+              </p>
+              <p>
+                We&rsquo;re transforming today&rsquo;s customer journey across key industries. Built upon the strengths and resources of the group, PETIK was born out of years of investment in emerging technologies, creative and affordable customer solutions. We power our engagement process with clients at every point of the journey, in a way that no other firm can.
+              </p>
             </div>
           </div>
-        )}
+
+          {/* Right Column: Corporate Video / Visual Showcase */}
+          <div className="lg:col-span-6">
+            <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden border border-[#EDEFF1] shadow-md bg-[#102B46]">
+              {isPlayingVideo ? (
+                <iframe
+                  src={CORPORATE_VIDEO_EMBED_URL}
+                  title="Petik Limited Corporate Overview"
+                  className="w-full h-full border-0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                />
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => setIsPlayingVideo(true)}
+                  aria-label="Play Petik Limited corporate video"
+                  className="group relative block w-full h-full cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#a17d2c]"
+                >
+                  <img
+                    src={CORPORATE_VIDEO_THUMBNAIL}
+                    alt="Petik Limited structural steel fabrication and welding operations"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors" />
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-0 m-auto w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-white/85 bg-black/25 backdrop-blur-xs group-hover:bg-[#a17d2c]/90 group-hover:border-[#a17d2c] flex items-center justify-center text-white transition-all duration-200 shadow-lg"
+                  >
+                    <Play className="w-7 h-7 sm:w-8 sm:h-8 fill-white translate-x-0.5 transition-transform group-hover:scale-110" />
+                  </span>
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
