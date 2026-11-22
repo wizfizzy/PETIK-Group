@@ -56,7 +56,7 @@ export const FeaturedProperty: React.FC<FeaturedPropertyProps> = ({ onBookShortl
                 </h2>
 
                 <p className="text-base text-slate-300 leading-relaxed mb-8 font-normal">
-                  Amarisa Court provides furnished shortlet apartments in Osogbo for business travellers, visiting teams, and families. [PLACEHOLDER: Insert unit count, suite types, and nightly rate].
+                  Amarisa Court provides furnished shortlet apartments in Osogbo for business travellers, visiting teams, and families.
                 </p>
 
                 {/* Amenities Grid */}
