@@ -1,7 +1,12 @@
 import React from 'react';
 import { SERVICES_DATA } from '../data/companyData';
+import { useScrollReveal } from '../utils/useScrollReveal';
+import { getCardRevealDelayMs, getRevealClassName } from '../utils/scrollReveal';
 
 export const BusinessCapabilities: React.FC = () => {
+  const { ref: gridRef, isVisible } = useScrollReveal<HTMLDivElement>();
+  const revealClass = getRevealClassName(isVisible);
+
   return (
     <section id="services" className="py-24 sm:py-28 bg-[#EDEFF1]/40 border-b border-[#EDEFF1]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -19,39 +24,43 @@ export const BusinessCapabilities: React.FC = () => {
         </div>
 
         {/* Capabilities Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {SERVICES_DATA.map((service) => (
+        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {SERVICES_DATA.map((service, index) => (
             <div
               key={service.id}
-              className="group bg-white rounded-2xl overflow-hidden border border-[#EDEFF1] shadow-sm hover:shadow-md transition-all duration-300 flex flex-col"
+              data-reveal-card
+              style={{ transitionDelay: `${getCardRevealDelayMs(index)}ms` }}
+              className={`transition-[opacity,transform] duration-700 ease-out ${revealClass}`}
             >
-              {/* Image Container with measured overlay */}
-              <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-white">
-                  <span className="text-xs font-mono font-semibold tracking-wider text-white/90">
-                    {service.number}
-                  </span>
-                  <span className="text-xs font-medium uppercase tracking-wider text-[#F8F8F5]/80">
-                    {service.sector}
-                  </span>
+              <div className="group h-full bg-white rounded-2xl overflow-hidden border border-[#EDEFF1] shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-[#a17d2c]/35 transition-all duration-300 flex flex-col">
+                {/* Image Container with measured overlay */}
+                <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-white">
+                    <span className="text-xs font-mono font-semibold tracking-wider text-white/90">
+                      {service.number}
+                    </span>
+                    <span className="text-xs font-medium uppercase tracking-wider text-[#F8F8F5]/80">
+                      {service.sector}
+                    </span>
+                  </div>
                 </div>
-              </div>
 
-              {/* Content */}
-              <div className="p-6 flex-1">
-                <h3 className="font-display text-xl font-bold text-[#102B46] mb-3 group-hover:text-[#a17d2c] transition-colors leading-snug">
-                  {service.title}
-                </h3>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  {service.shortDescription}
-                </p>
+                {/* Content */}
+                <div className="p-6 flex-1">
+                  <h3 className="font-display text-xl font-bold text-[#102B46] mb-3 group-hover:text-[#a17d2c] transition-colors leading-snug">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    {service.shortDescription}
+                  </p>
+                </div>
               </div>
             </div>
           ))}

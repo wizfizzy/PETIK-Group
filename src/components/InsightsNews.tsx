@@ -2,6 +2,8 @@ import React from 'react';
 import { ArrowRight, Clock, Calendar } from 'lucide-react';
 import { INSIGHTS_DATA } from '../data/companyData';
 import { getHomepageInsights, PETIK_BLOG_URL } from '../utils/insights';
+import { useScrollReveal } from '../utils/useScrollReveal';
+import { getCardRevealDelayMs, getRevealClassName } from '../utils/scrollReveal';
 
 interface InsightsNewsProps {
   onEnquire?: () => void;
@@ -10,6 +12,8 @@ interface InsightsNewsProps {
 
 export const InsightsNews: React.FC<InsightsNewsProps> = () => {
   const recentArticles = getHomepageInsights(INSIGHTS_DATA, 3);
+  const { ref: gridRef, isVisible } = useScrollReveal<HTMLDivElement>();
+  const revealClass = getRevealClassName(isVisible);
 
   return (
     <section id="insights" className="py-24 sm:py-28 bg-[#EDEFF1]/30 border-b border-[#EDEFF1]">
@@ -30,12 +34,17 @@ export const InsightsNews: React.FC<InsightsNewsProps> = () => {
         </div>
 
         {/* 3-Column Editorial Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {recentArticles.map((article) => (
-            <article
+        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          {recentArticles.map((article, index) => (
+            <div
               key={article.id}
-              className="relative group bg-white rounded-2xl overflow-hidden border border-[#EDEFF1] shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between"
+              data-reveal-card
+              style={{ transitionDelay: `${getCardRevealDelayMs(index)}ms` }}
+              className={`h-full transition-[opacity,transform] duration-700 ease-out ${revealClass}`}
             >
+              <article
+                className="relative group h-full bg-white rounded-2xl overflow-hidden border border-[#EDEFF1] shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-[#a17d2c]/35 transition-all duration-300 flex flex-col justify-between"
+              >
               <div>
                 {/* Visual */}
                 <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
@@ -96,6 +105,7 @@ export const InsightsNews: React.FC<InsightsNewsProps> = () => {
                 </span>
               </div>
             </article>
+            </div>
           ))}
         </div>
 

@@ -1,8 +1,13 @@
 import React from 'react';
 import { Layers, Compass, ShieldCheck, TrendingUp } from 'lucide-react';
 import { WHY_PETIK_PRINCIPLES } from '../data/companyData';
+import { useScrollReveal } from '../utils/useScrollReveal';
+import { getCardRevealDelayMs, getRevealClassName } from '../utils/scrollReveal';
 
 export const WhyPetik: React.FC = () => {
+  const { ref: gridRef, isVisible } = useScrollReveal<HTMLDivElement>();
+  const revealClass = getRevealClassName(isVisible);
+
   const icons = [
     <Layers key="1" className="w-6 h-6 text-[#a17d2c]" />,
     <Compass key="2" className="w-6 h-6 text-[#a17d2c]" />,
@@ -27,29 +32,33 @@ export const WhyPetik: React.FC = () => {
         </div>
 
         {/* 4 Principles Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {WHY_PETIK_PRINCIPLES.map((principle, index) => (
             <div
               key={principle.number}
-              className="p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col"
+              data-reveal-card
+              style={{ transitionDelay: `${getCardRevealDelayMs(index)}ms` }}
+              className={`transition-[opacity,transform] duration-700 ease-out ${revealClass}`}
             >
-              <div>
-                <div className="flex items-center justify-between mb-8">
-                  <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
-                    {icons[index]}
+              <div className="group h-full p-8 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/[0.08] hover:border-[#a17d2c]/50 hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300 flex flex-col">
+                <div>
+                  <div className="flex items-center justify-between mb-8">
+                    <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center transition-all duration-300 group-hover:border-[#a17d2c]/60 group-hover:bg-[#a17d2c]/15 group-hover:scale-105">
+                      {icons[index]}
+                    </div>
+                    <span className="text-xs font-mono font-bold tracking-widest text-slate-400 group-hover:text-[#a17d2c] transition-colors duration-300">
+                      {principle.number}
+                    </span>
                   </div>
-                  <span className="text-xs font-mono font-bold tracking-widest text-slate-400">
-                    {principle.number}
-                  </span>
+
+                  <h3 className="font-display text-lg sm:text-xl font-bold text-white mb-3">
+                    {principle.title}
+                  </h3>
+
+                  <p className="text-sm text-slate-300 leading-relaxed">
+                    {principle.description}
+                  </p>
                 </div>
-
-                <h3 className="font-display text-lg sm:text-xl font-bold text-white mb-3">
-                  {principle.title}
-                </h3>
-
-                <p className="text-sm text-slate-300 leading-relaxed">
-                  {principle.description}
-                </p>
               </div>
             </div>
           ))}

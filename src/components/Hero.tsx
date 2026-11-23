@@ -69,13 +69,21 @@ export const Hero: React.FC<HeroProps> = ({ onExploreCapabilities, onStartConver
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
             <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs sm:text-sm text-slate-300">
               <span className="font-semibold text-white">Sectors:</span>
-              <span>Real Estate Development</span>
-              <span className="text-slate-500" aria-hidden="true">·</span>
-              <span>Civil Construction & PM</span>
-              <span className="text-slate-500" aria-hidden="true">·</span>
-              <span>Renewable Energy</span>
-              <span className="text-slate-500" aria-hidden="true">·</span>
-              <span>Downstream Logistics</span>
+              {[
+                'Real Estate Development',
+                'Civil Construction & PM',
+                'Renewable Energy',
+                'Downstream Logistics',
+              ].map((sector, idx, arr) => (
+                <React.Fragment key={sector}>
+                  <span className="cursor-default transition-all duration-300 hover:text-[#a17d2c] hover:scale-105 inline-block">
+                    {sector}
+                  </span>
+                  {idx < arr.length - 1 && (
+                    <span className="text-slate-500 transition-colors duration-300 hover:text-[#a17d2c]" aria-hidden="true">·</span>
+                  )}
+                </React.Fragment>
+              ))}
             </div>
 
             {/* Scroll Indicator */}

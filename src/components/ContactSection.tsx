@@ -3,6 +3,8 @@ import { Mail, MapPin, Phone, Send, CheckCircle2, AlertCircle } from 'lucide-rea
 import { validateContactForm, generateEnquiryReference, ContactFormData } from '../utils/contact';
 import { TRUST_SIGNALS, buildTelHref } from '../utils/trustSignals';
 import { DirectContactButtons } from './DirectContactButtons';
+import { useScrollReveal } from '../utils/useScrollReveal';
+import { getCardRevealDelayMs, getRevealClassName } from '../utils/scrollReveal';
 
 export interface ContactSectionHandle {
   prefillService: (serviceName: string) => void;
@@ -22,6 +24,8 @@ export const ContactSection = forwardRef<ContactSectionHandle>((_, ref) => {
   const [errors, setErrors] = useState<Partial<Record<keyof ContactFormData, string>>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionSuccess, setSubmissionSuccess] = useState<string | null>(null);
+  const { ref: gridRef, isVisible } = useScrollReveal<HTMLDivElement>();
+  const revealClass = getRevealClassName(isVisible);
 
   useImperativeHandle(ref, () => ({
     prefillService: (serviceName: string) => {
@@ -103,10 +107,14 @@ export const ContactSection = forwardRef<ContactSectionHandle>((_, ref) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-stretch">
+        <div ref={gridRef} className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-stretch">
           {/* Left Column: Office & Operational Information */}
-          <div className="lg:col-span-5">
-            <div className="h-full p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm flex flex-col">
+          <div
+            data-reveal-card
+            style={{ transitionDelay: `${getCardRevealDelayMs(0)}ms` }}
+            className={`lg:col-span-5 transition-[opacity,transform] duration-700 ease-out ${revealClass}`}
+          >
+            <div className="h-full p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm flex flex-col transition-all duration-300 hover:border-[#a17d2c]/40 hover:shadow-2xl">
               <h3 className="font-display text-xl font-bold text-white mb-6">
                 Petik Limited Corporate Office
               </h3>
@@ -181,8 +189,12 @@ export const ContactSection = forwardRef<ContactSectionHandle>((_, ref) => {
           </div>
 
           {/* Right Column: Interactive Consultation & Enquiry Form */}
-          <div className="lg:col-span-7">
-            <div className="h-full bg-white rounded-2xl p-6 sm:p-10 text-slate-900 shadow-2xl flex flex-col justify-center">
+          <div
+            data-reveal-card
+            style={{ transitionDelay: `${getCardRevealDelayMs(1, 120)}ms` }}
+            className={`lg:col-span-7 transition-[opacity,transform] duration-700 ease-out ${revealClass}`}
+          >
+            <div className="h-full bg-white rounded-2xl p-6 sm:p-10 text-slate-900 shadow-2xl hover:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.45)] transition-shadow duration-300 flex flex-col justify-center">
               {submissionSuccess ? (
                 <div className="py-8 text-center space-y-6">
                   <div className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 mx-auto flex items-center justify-center">

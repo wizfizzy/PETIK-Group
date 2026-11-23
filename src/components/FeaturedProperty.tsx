@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { ArrowRight, Wifi, Zap, Shield, Sparkles, Coffee, Tv } from 'lucide-react';
 import amarisaCourtImg from '../assets/images/amarisa_court_shortlet_1794501668574.jpg';
+import { useScrollReveal } from '../utils/useScrollReveal';
+import { getRevealClassName } from '../utils/scrollReveal';
 
 interface FeaturedPropertyProps {
   onBookShortlet: () => void;
@@ -8,6 +10,8 @@ interface FeaturedPropertyProps {
 
 export const FeaturedProperty: React.FC<FeaturedPropertyProps> = ({ onBookShortlet }) => {
   const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const { ref: cardRef, isVisible } = useScrollReveal<HTMLDivElement>();
+  const revealClass = getRevealClassName(isVisible);
 
   const amenities = [
     { icon: <Zap className="w-4 h-4 text-[#a17d2c]" />, label: 'Hybrid Solar & Generator Backup Power' },
@@ -21,16 +25,21 @@ export const FeaturedProperty: React.FC<FeaturedPropertyProps> = ({ onBookShortl
   return (
     <section id="properties" className="py-24 sm:py-28 bg-[#F8F8F5] border-b border-[#EDEFF1]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-[#102B46] rounded-3xl overflow-hidden shadow-xl text-white">
-          <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
-            {/* Visual Column */}
-            <div className="lg:col-span-7 relative min-h-[360px] lg:min-h-[500px]">
-              <img
-                src={amarisaCourtImg}
-                alt="Furnished living area and open kitchenette representing Amarisa Court shortlet apartments in Osogbo"
-                className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
-              />
+        <div
+          ref={cardRef}
+          data-reveal-card
+          className={`transition-[opacity,transform] duration-700 ease-out ${revealClass}`}
+        >
+          <div className="group bg-[#102B46] rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-500 text-white">
+            <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
+              {/* Visual Column */}
+              <div className="lg:col-span-7 relative min-h-[360px] lg:min-h-[500px] overflow-hidden">
+                <img
+                  src={amarisaCourtImg}
+                  alt="Furnished living area and open kitchenette representing Amarisa Court shortlet apartments in Osogbo"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                  referrerPolicy="no-referrer"
+                />
               <div className="absolute inset-0 bg-gradient-to-t from-[#102B46] via-transparent to-transparent lg:hidden" />
               <div className="absolute top-6 left-6">
                 <span className="px-3.5 py-1.5 rounded-lg bg-[#102B46]/80 backdrop-blur-md text-xs font-semibold uppercase tracking-wider text-white border border-white/10">
@@ -62,7 +71,10 @@ export const FeaturedProperty: React.FC<FeaturedPropertyProps> = ({ onBookShortl
                 {/* Amenities Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
                   {amenities.map((item, idx) => (
-                    <div key={idx} className="flex items-center gap-2.5 text-xs text-slate-200">
+                    <div
+                      key={idx}
+                      className="flex items-center gap-2.5 text-xs text-slate-200 transition-transform duration-200 hover:translate-x-1"
+                    >
                       {item.icon}
                       <span>{item.label}</span>
                     </div>
@@ -89,6 +101,7 @@ export const FeaturedProperty: React.FC<FeaturedPropertyProps> = ({ onBookShortl
                 </button>
               </div>
             </div>
+          </div>
           </div>
         </div>
       </div>
@@ -123,7 +136,7 @@ export const FeaturedProperty: React.FC<FeaturedPropertyProps> = ({ onBookShortl
             </div>
 
             <p className="text-sm text-slate-700 leading-relaxed mb-6">
-              Amarisa Court is Petik Limited’s serviced shortlet accommodation in Osogbo. Units include hybrid solar and generator backup power, fibre internet, fitted kitchens, and on-site security. [PLACEHOLDER: Insert street address, apartment breakdown, and nightly rate range].
+              Amarisa Court is Petik Limited’s serviced shortlet accommodation in Osogbo. Units include hybrid solar and generator backup power, fibre internet, fitted kitchens, and on-site security.
             </p>
 
             <div className="space-y-4 mb-6">
